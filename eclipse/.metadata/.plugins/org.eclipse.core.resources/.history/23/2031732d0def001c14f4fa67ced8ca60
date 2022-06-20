@@ -1,0 +1,7 @@
+package rice.ui.clickgui.vape;
+
+public enum ClickType {
+    Home,
+    Config,
+    Settings
+}

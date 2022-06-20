@@ -1,0 +1,88 @@
+---- Minecraft Crash Report ----
+// Hi. I'm Minecraft, and I'm a crashaholic.
+
+Time: 2022/4/2 ¤W¤È 9:52
+Description: Unexpected error
+
+java.lang.NullPointerException: Unexpected error
+	at disintegration.modules.combat.Reach.onEvent(Reach.java:29)
+	at disintegration.Client.onEvent(Client.java:51)
+	at net.minecraft.client.renderer.EntityRenderer.getMouseOver(EntityRenderer.java:456)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1514)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1330)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1134)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:413)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at disintegration.modules.combat.Reach.onEvent(Reach.java:29)
+	at disintegration.Client.onEvent(Client.java:51)
+	at net.minecraft.client.renderer.EntityRenderer.getMouseOver(EntityRenderer.java:456)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1514)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player574'/152, l='MpServer', x=552.59, y=68.00, z=276.50]]
+	Chunk stats: MultiplayerChunkCache: 284, 284
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 67581 game time, 68316 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 21 total; [EntityCreeper['Creeper'/64, l='MpServer', x=622.63, y=13.00, z=281.44], EntityCreeper['Creeper'/67, l='MpServer', x=631.50, y=22.00, z=214.50], EntityMinecartChest['container.minecart'/69, l='MpServer', x=630.50, y=35.06, z=324.50], EntityBat['Bat'/327, l='MpServer', x=544.16, y=36.13, z=353.44], EntityZombie['Zombie'/201, l='MpServer', x=541.50, y=65.00, z=351.50], EntityZombie['Zombie'/202, l='MpServer', x=542.50, y=65.00, z=356.50], EntityBat['Bat'/301, l='MpServer', x=631.78, y=24.00, z=198.91], EntitySkeleton['Skeleton'/207, l='MpServer', x=613.50, y=66.00, z=264.50], EntityBat['Bat'/303, l='MpServer', x=614.34, y=32.63, z=350.34], EntityBat['Bat'/304, l='MpServer', x=615.84, y=32.02, z=352.56], EntitySkeleton['Skeleton'/49, l='MpServer', x=474.50, y=70.00, z=330.50], EntitySkeleton['Skeleton'/51, l='MpServer', x=496.50, y=69.00, z=226.50], EntityZombie['Zombie'/53, l='MpServer', x=546.28, y=68.00, z=276.44], EntityBat['Bat'/309, l='MpServer', x=616.84, y=32.25, z=348.06], EntityBat['Bat'/55, l='MpServer', x=581.65, y=28.36, z=305.59], EntityBat['Bat'/56, l='MpServer', x=588.25, y=30.10, z=321.59], EntitySkeleton['Skeleton'/57, l='MpServer', x=602.50, y=70.00, z=279.50], EntitySkeleton['Skeleton'/58, l='MpServer', x=594.50, y=37.00, z=288.50], EntityBat['Bat'/59, l='MpServer', x=590.65, y=29.91, z=310.52], EntityPlayerSP['Player574'/152, l='MpServer', x=552.59, y=68.00, z=276.50], EntityZombie['Zombie'/63, l='MpServer', x=617.50, y=64.00, z=243.50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:405)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2772)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:442)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_321, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 633427496 bytes (604 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 1650/PCIe/SSE2 GL version 4.6.0 NVIDIA 456.71, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 456.71
+	OpenGlRenderer: GeForce GTX 1650/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 8

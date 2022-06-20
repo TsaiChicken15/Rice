@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="org.eclipse.jdt.ui.lastextjar" value="D:\Latest Clients\Rice\jars\libraries\com\mojang\realms\1.6.1"/>
+	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
+		<item key="group_libraries" value="true"/>
+		<item key="layout" value="1"/>
+		<item key="rootMode" value="1"/>
+		<item key="linkWithEditor" value="false"/>
+		<item key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;packageExplorer group_libraries=&quot;1&quot; layout=&quot;1&quot; linkWithEditor=&quot;0&quot; rootMode=&quot;1&quot; workingSetName=&quot;Aggregate for window 1648806498962&quot;&gt;&#x0D;&#x0A;&lt;customFilters userDefinedPatternsEnabled=&quot;false&quot;&gt;&#x0D;&#x0A;&lt;xmlDefinedFilters&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.StaticsFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.buildship.ui.packageexplorer.filter.gradle.buildfolder&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.NonJavaProjectsFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer_patternFilterId_.*&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.NonSharedProjectsFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.SyntheticMembersFilter&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.ContainedLibraryFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.internal.ui.PackageExplorer.HideInnerClassFilesFilter&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.internal.ui.PackageExplorer.EmptyInnerPackageFilter&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.m2e.MavenModuleFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.buildship.ui.packageexplorer.filter.gradle.subProject&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.ClosedProjectsFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.DeprecatedMembersFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.EmptyLibraryContainerFilter&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.PackageDeclarationFilter&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.ImportDeclarationFilter&quot; isEnabled=&quot;true&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.NonJavaElementFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.LibraryFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.CuAndClassFileFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.internal.ui.PackageExplorer.EmptyPackageFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.NonPublicFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.LocalTypesFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;child filterId=&quot;org.eclipse.jdt.ui.PackageExplorer.FieldsFilter&quot; isEnabled=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;/xmlDefinedFilters&gt;&#x0D;&#x0A;&lt;/customFilters&gt;&#x0D;&#x0A;&lt;/packageExplorer&gt;"/>
+	</section>
+	<section name="JavaElementSearchActions">
+	</section>
+	<section name="BuildPathsPropertyPage">
+		<item key="pageIndex" value="2"/>
+	</section>
+	<section name="NewPackageWizardPage">
+		<item key="create_package_info_java" value="false"/>
+	</section>
+	<section name="completion_proposal_size">
+		<item key="size.x" value="413"/>
+		<item key="size.y" value="221"/>
+	</section>
+	<section name="quick_assist_proposal_size">
+	</section>
+	<section name="RenameInformationPopup">
+	</section>
+	<section name="org.eclipse.ltk.ui.refactoring.settings">
+		<item key="renameSubpackages" value="true"/>
+		<item key="updateTextualMatches" value="false"/>
+		<item key="updateQualifiedNames" value="false"/>
+		<item key="patterns" value="*"/>
+	</section>
+	<section name="JavaSearchPage">
+		<item key="CASE_SENSITIVE" value="false"/>
+		<item key="INCLUDE_MASK" value="11"/>
+		<item key="HISTORY_SIZE" value="0"/>
+	</section>
+	<section name="RefactoringWizard.preview">
+		<item key="width" value="600"/>
+		<item key="height" value="400"/>
+	</section>
+	<section name="JarPackageWizard">
+		<item key="JarPackageWizardPage.EXPORT_CLASS_FILES" value="true"/>
+		<item key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER" value="false"/>
+		<item key="JarPackageWizardPage.EXPORT_JAVA_FILES" value="false"/>
+		<item key="JarPackageWizardPage.REFACTORINGS" value="false"/>
+		<item key="JarPackageWizardPage.COMPRESS" value="true"/>
+		<item key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES" value="false"/>
+		<item key="JarPackageWizardPage.OVERWRITE" value="false"/>
+		<item key="jarOptionsWizardPage.EXPORT_WARNINGS" value="true"/>
+		<item key="jarOptionsWizardPage.EXPORT_ERRORS" value="true"/>
+		<item key="jarOptionsWizardPage.STORE_USE_SRC_FOLDERS" value="false"/>
+		<item key="jarOptionsWizardPage.BUILD_IF_NEEDED" value="true"/>
+		<item key="jarOptionsWizardPage.SAVE_DESCRIPTION" value="false"/>
+		<item key="jarOptionsWizardPage.DESCRIPTION_LOCATION" value=""/>
+		<item key="JarManifestWizardPage.GENERATE_MANIFEST" value="true"/>
+		<item key="JarManifestWizardPage.SAVE_MANIFEST" value="false"/>
+		<item key="JarManifestWizardPage.REUSE_MANIFEST" value="false"/>
+		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
+		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
+		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="D:\Latest Clients\Rice Client\Rice b2.2.jar"/>
+			<item value="D:\Latest Clients\Rice Client\Rice b2.1.jar"/>
+			<item value="D:\Latest Clients\Rice Client\Rice b2.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v5.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice b1.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v4.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v3.2.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v3.1.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v3.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v2\Rice v2.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v1\Rice v1.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v4\Rice v4.jar"/>
+			<item value="C:\Users\user\Desktop\Rice Client\Rice v3\Rice v3.jar"/>
+			<item value="C:\Users\tsaic\OneDrive\桌面\Rice Client\Rice v1\Rice v1.jar"/>
+			<item value="C:\Users\tsaic\OneDrive\桌面\Rice Client\Rice v1.jar"/>
+		</list>
+	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item key="org.eclipse.jdt.ui.typecomment.deprecated" value="true"/>
+	</section>
+	<section name="NewClassWizardPage">
+		<item key="create_constructor" value="false"/>
+		<item key="create_unimplemented" value="true"/>
+	</section>
+	<section name="SourceActionDialog.constructors">
+		<item key="VisibilityModifier" value="1"/>
+		<item key="FinalModifier" value="false"/>
+		<item key="SynchronizedModifier" value="false"/>
+		<item key="Comments" value="false"/>
+		<item key="InsertPosition.v2" value="0"/>
+	</section>
+	<section name="AddUnimplementedConstructorsDialog">
+		<item key="OmitCallToSuper" value="false"/>
+	</section>
+	<section name="DialogBounds_AddUnimplementedConstructorsDialog">
+		<item key="DIALOG_X_ORIGIN" value="236"/>
+		<item key="DIALOG_Y_ORIGIN" value="-34"/>
+		<item key="DIALOG_WIDTH" value="552"/>
+		<item key="DIALOG_HEIGHT" value="627"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft JhengHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft JhengHei UI"/>
+	</section>
+	<section name="GenerateConstructorUsingFieldsSelectionDialog">
+		<item key="OmitCallToSuper" value="false"/>
+	</section>
+	<section name="DialogBounds_GenerateConstructorUsingFieldsSelectionDialog">
+		<item key="DIALOG_X_ORIGIN" value="236"/>
+		<item key="DIALOG_Y_ORIGIN" value="-68"/>
+		<item key="DIALOG_WIDTH" value="552"/>
+		<item key="DIALOG_HEIGHT" value="678"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft JhengHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft JhengHei UI"/>
+	</section>
+	<section name="SourceActionDialog.methods">
+		<item key="VisibilityModifier" value="1"/>
+		<item key="FinalModifier" value="false"/>
+		<item key="SynchronizedModifier" value="false"/>
+		<item key="Comments" value="false"/>
+	</section>
+	<section name="AddGetterSetterDialog">
+		<item key="SortOrdering" value="false"/>
+		<item key="RemoveFinal" value="false"/>
+	</section>
+	<section name="DialogBounds_GetterSetterTreeSelectionDialog">
+		<item key="DIALOG_X_ORIGIN" value="230"/>
+		<item key="DIALOG_Y_ORIGIN" value="8"/>
+		<item key="DIALOG_WIDTH" value="564"/>
+		<item key="DIALOG_HEIGHT" value="696"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft JhengHei UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft JhengHei UI"/>
+	</section>
+	<section name="javadoc">
+		<item key="javadoc_command_history" value=""/>
+		<item key="fromStandard" value="true"/>
+		<item key="docletname" value=""/>
+		<item key="docletpath" value=""/>
+		<item key="access" value="public"/>
+		<item key="use" value="true"/>
+		<item key="author" value="true"/>
+		<item key="version" value="true"/>
+		<item key="nodeprecated" value="false"/>
+		<item key="nodeprecatedlist" value="false"/>
+		<item key="splitindex" value="true"/>
+		<item key="noindex" value="false"/>
+		<item key="notree" value="false"/>
+		<item key="nonavbar" value="false"/>
+		<item key="openinbrowser" value="false"/>
+		<item key="source" value="1.8"/>
+		<item key="antpath" value="D:\Latest Clients\Rice\eclipse\Client\javadoc.xml"/>
+		<item key="destdir" value="D:\Latest Clients\Rice\eclipse\Client\doc"/>
+		<section name="projects">
+			<section name="Client">
+				<item key="href" value=""/>
+				<item key="destdir" value="D:\Latest Clients\Rice\eclipse\Client\doc"/>
+				<item key="antpath" value="D:\Latest Clients\Rice\eclipse\Client\javadoc.xml"/>
+			</section>
+		</section>
+	</section>
+</section>

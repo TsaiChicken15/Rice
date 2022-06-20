@@ -1,0 +1,92 @@
+---- Minecraft Crash Report ----
+// There are four lights!
+
+Time: 2022/6/2 ¤U¤È 2:16
+Description: Unexpected error
+
+java.lang.Error: Unresolved compilation problem: 
+	The method anim17(float) is undefined for the type AnimationUtil
+
+	at rice.modules.render.Animations.renderAnimation(Animations.java:48)
+	at net.minecraft.client.renderer.ItemRenderer.renderItemInFirstPerson(ItemRenderer.java:370)
+	at net.minecraft.client.renderer.EntityRenderer.renderHand(EntityRenderer.java:1022)
+	at net.minecraft.client.renderer.EntityRenderer.func_175068_a(EntityRenderer.java:1941)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1539)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1331)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1136)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:415)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at rice.modules.render.Animations.renderAnimation(Animations.java:48)
+	at net.minecraft.client.renderer.ItemRenderer.renderItemInFirstPerson(ItemRenderer.java:370)
+	at net.minecraft.client.renderer.EntityRenderer.renderHand(EntityRenderer.java:1022)
+	at net.minecraft.client.renderer.EntityRenderer.func_175068_a(EntityRenderer.java:1941)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1539)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player57'/148, l='MpServer', x=634.70, y=63.00, z=-379.35]]
+	Chunk stats: MultiplayerChunkCache: 274, 274
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 1334754 game time, 24155 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 77 total; [EntityXPOrb['Experience Orb'/258, l='MpServer', x=500.00, y=64.00, z=-328.25], EntityXPOrb['Experience Orb'/259, l='MpServer', x=499.59, y=64.00, z=-328.81], EntityXPOrb['Experience Orb'/261, l='MpServer', x=496.34, y=63.00, z=-319.47], EntityXPOrb['Experience Orb'/262, l='MpServer', x=496.69, y=63.00, z=-318.81], EntityZombie['Zombie'/7445, l='MpServer', x=575.50, y=41.02, z=-303.50], EntityMinecartChest['container.minecart'/4887, l='MpServer', x=559.50, y=12.06, z=-445.50], EntityZombie['Zombie'/3869, l='MpServer', x=662.50, y=16.00, z=-366.50], EntitySkeleton['Skeleton'/3879, l='MpServer', x=679.13, y=63.00, z=-363.47], EntityCreeper['Creeper'/7208, l='MpServer', x=676.50, y=15.00, z=-330.50], EntityXPOrb['Experience Orb'/306, l='MpServer', x=534.06, y=62.00, z=-340.63], EntityXPOrb['Experience Orb'/308, l='MpServer', x=532.25, y=60.00, z=-340.19], EntityXPOrb['Experience Orb'/309, l='MpServer', x=528.84, y=56.00, z=-338.28], EntityZombie['Zombie'/6969, l='MpServer', x=562.50, y=37.02, z=-306.50], EntityZombie['Zombie'/6970, l='MpServer', x=564.50, y=37.02, z=-305.50], EntityXPOrb['Experience Orb'/326, l='MpServer', x=554.50, y=64.00, z=-352.81], EntityXPOrb['Experience Orb'/328, l='MpServer', x=550.16, y=64.00, z=-355.50], EntityXPOrb['Experience Orb'/329, l='MpServer', x=554.72, y=64.00, z=-352.41], EntityItem['item.tile.torch'/335, l='MpServer', x=573.47, y=33.00, z=-336.84], EntityItem['item.tile.torch'/345, l='MpServer', x=590.88, y=34.00, z=-372.88], EntityItem['item.tile.torch'/346, l='MpServer', x=591.28, y=34.00, z=-364.44], EntityItem['item.tile.torch'/347, l='MpServer', x=590.72, y=32.00, z=-349.97], EntityMinecartChest['container.minecart'/348, l='MpServer', x=580.50, y=33.06, z=-332.50], EntityCreeper['Creeper'/5472, l='MpServer', x=590.50, y=32.00, z=-348.50], EntityItem['item.tile.torch'/355, l='MpServer', x=596.00, y=34.00, z=-389.94], EntityItem['item.tile.rail'/356, l='MpServer', x=604.13, y=33.00, z=-362.13], EntityItem['item.tile.torch'/357, l='MpServer', x=594.66, y=33.00, z=-366.88], EntityItem['item.tile.rail'/358, l='MpServer', x=607.50, y=32.00, z=-362.13], EntityItem['item.tile.torch'/361, l='MpServer', x=595.03, y=33.00, z=-344.13], EntityItem['item.tile.torch'/362, l='MpServer', x=599.72, y=38.00, z=-339.16], EntityZombie['Zombie'/366, l='MpServer', x=596.97, y=38.00, z=-310.59], EntitySkeleton['Skeleton'/7791, l='MpServer', x=583.50, y=20.02, z=-304.50], EntityItem['item.tile.torch'/368, l='MpServer', x=608.44, y=33.00, z=-353.13], EntitySkeleton['Skeleton'/7792, l='MpServer', x=583.50, y=20.02, z=-303.50], EntityBat['Bat'/6001, l='MpServer', x=651.20, y=34.28, z=-330.89], EntityItem['item.tile.torch'/369, l='MpServer', x=610.09, y=31.00, z=-331.09], EntitySkeleton['Skeleton'/7793, l='MpServer', x=582.50, y=20.02, z=-306.50], EntityZombie['Zombie'/5490, l='MpServer', x=559.50, y=27.00, z=-335.50], EntityItem['item.tile.torch'/371, l='MpServer', x=614.53, y=39.00, z=-321.22], EntityMinecartChest['container.minecart'/372, l='MpServer', x=608.50, y=39.00, z=-326.56], EntityZombie['Zombie'/7542, l='MpServer', x=616.72, y=43.00, z=-313.22], EntityPlayerSP['Player57'/148, l='MpServer', x=634.70, y=63.00, z=-379.35], EntitySpider['Spider'/6282, l='MpServer', x=562.50, y=19.00, z=-318.50], EntitySkeleton['Skeleton'/7566, l='MpServer', x=579.50, y=32.02, z=-310.50], EntitySkeleton['Skeleton'/7567, l='MpServer', x=580.50, y=32.02, z=-309.50], EntityCreeper['Creeper'/7568, l='MpServer', x=577.50, y=32.00, z=-314.50], EntityCreeper['Creeper'/7569, l='MpServer', x=575.50, y=32.00, z=-318.50], EntityXPOrb['Experience Orb'/6823, l='MpServer', x=642.84, y=63.00, z=-370.44], EntityXPOrb['Experience Orb'/6572, l='MpServer', x=496.63, y=69.00, z=-279.41], EntityXPOrb['Experience Orb'/6573, l='MpServer', x=500.59, y=69.00, z=-278.19], EntityXPOrb['Experience Orb'/5314, l='MpServer', x=567.59, y=63.00, z=-399.28], EntityXPOrb['Experience Orb'/5315, l='MpServer', x=567.78, y=63.00, z=-399.28], EntityXPOrb['Experience Orb'/5316, l='MpServer', x=567.28, y=63.00, z=-399.28], EntityXPOrb['Experience Orb'/6597, l='MpServer', x=517.91, y=63.00, z=-259.19], EntityXPOrb['Experience Orb'/6598, l='MpServer', x=517.97, y=63.00, z=-261.16], EntityBat['Bat'/7878, l='MpServer', x=662.50, y=16.05, z=-371.83], EntityXPOrb['Experience Orb'/6601, l='MpServer', x=533.38, y=64.00, z=-263.81], EntityXPOrb['Experience Orb'/6602, l='MpServer', x=534.66, y=64.00, z=-264.38], EntityXPOrb['Experience Orb'/6603, l='MpServer', x=534.16, y=64.00, z=-263.72], EntityXPOrb['Experience Orb'/6604, l='MpServer', x=530.16, y=64.00, z=-258.47], EntityXPOrb['Experience Orb'/6605, l='MpServer', x=529.66, y=64.00, z=-259.28], EntityXPOrb['Experience Orb'/6606, l='MpServer', x=534.00, y=64.00, z=-258.47], EntityXPOrb['Experience Orb'/6613, l='MpServer', x=630.63, y=63.00, z=-270.31], EntitySkeleton['Skeleton'/7382, l='MpServer', x=569.50, y=33.00, z=-328.50], EntitySkeleton['Skeleton'/7894, l='MpServer', x=577.50, y=50.02, z=-439.50], EntitySkeleton['Skeleton'/6623, l='MpServer', x=690.09, y=21.00, z=-401.91], EntityItem['item.tile.torch'/4833, l='MpServer', x=579.47, y=30.00, z=-421.50], EntitySpider['Spider'/6625, l='MpServer', x=694.28, y=20.00, z=-400.31], EntityZombie['Zombie'/4321, l='MpServer', x=596.50, y=20.00, z=-306.50], EntityXPOrb['Experience Orb'/3299, l='MpServer', x=575.97, y=62.00, z=-366.59], EntitySkeleton['Skeleton'/6627, l='MpServer', x=652.50, y=30.00, z=-349.50], EntityXPOrb['Experience Orb'/3300, l='MpServer', x=577.19, y=62.00, z=-369.19], EntityXPOrb['Experience Orb'/3301, l='MpServer', x=574.34, y=62.00, z=-369.13], EntityCreeper['Creeper'/6631, l='MpServer', x=683.50, y=13.00, z=-410.50], EntityCreeper['Creeper'/2279, l='MpServer', x=567.50, y=37.00, z=-313.50], EntityCreeper['Creeper'/7146, l='MpServer', x=574.50, y=32.02, z=-304.50], EntityItem['item.item.string'/7404, l='MpServer', x=637.13, y=63.00, z=-381.69], EntityWitch['Witch'/7920, l='MpServer', x=632.89, y=63.62, z=-381.08]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:405)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2774)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:444)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_281, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 755757648 bytes (720 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 12, tallocated: 98
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 1650/PCIe/SSE2 GL version 4.6.0 NVIDIA 456.71, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 456.71
+	OpenGlRenderer: GeForce GTX 1650/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 8

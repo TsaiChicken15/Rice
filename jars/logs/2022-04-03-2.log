@@ -1,0 +1,31 @@
+[16:09:50] [Client thread/INFO]: Setting user: Player656
+[16:09:50] [Client thread/INFO]: (Session ID is token:0:Player656)
+[16:09:52] [Client thread/INFO]: LWJGL Version: 2.9.1
+[16:09:53] [Client thread/INFO]: Reloading ResourceManager: Default
+[16:09:53] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[16:09:53] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[16:09:53] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[16:09:53] [Thread-7/INFO]: OpenAL initialized.
+[16:09:54] [Sound Library Loader/INFO]: Sound engine started
+[16:10:00] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[16:10:07] [Server thread/INFO]: Starting integrated minecraft server version 1.8
+[16:10:07] [Server thread/INFO]: Generating keypair
+[16:10:07] [Server thread/INFO]: Preparing start region for level 0
+[16:10:08] [Server thread/INFO]: Preparing spawn area: 64%
+[16:10:08] [Server thread/INFO]: Changing view distance to 8, from 10
+[16:10:09] [Server thread/INFO]: Player656[local:E:c98df84a] logged in with entity id 209 at (638.5498372411621, 63.0, 153.69612360996723)
+[16:10:09] [Server thread/INFO]: Player656 joined the game
+[16:11:00] [Server thread/INFO]: Saving and pausing game...
+[16:11:00] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[16:11:00] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[16:11:00] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
+[16:11:07] [Server thread/INFO]: Saving and pausing game...
+[16:11:07] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[16:11:07] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[16:11:07] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
+[16:12:12] [Server thread/INFO]: Player656 has just earned the achievement [Taking Inventory]
+[16:12:12] [Client thread/INFO]: [CHAT] Player656 has just earned the achievement [Taking Inventory]
+[16:14:10] [Server thread/INFO]: Saving and pausing game...
+[16:14:10] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[16:14:10] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[16:14:10] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End

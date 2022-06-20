@@ -1,0 +1,47 @@
+package rice.ui.clickgui.blocks;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import net.minecraft.client.gui.GuiScreen;
+import rice.Client;
+import rice.modules.Module;
+import rice.modules.Module.Category;
+import rice.modules.other.ToggleSound;
+import rice.settings.BooleanSetting;
+import rice.settings.ModeSetting;
+import rice.settings.NewLine;
+import rice.settings.NumberSetting;
+import rice.settings.Setting;
+import rice.ui.clickgui.simple.Panel;
+import rice.ui.clickgui.simple.button.ModuleButton;
+import rice.utils.MCHook;
+
+public class ClickGui extends GuiScreen
+{
+	public ArrayList<Panel> panels = new ArrayList<Panel>();
+	public ArrayList<ArrayList<ModuleButton>> modules = new ArrayList<ArrayList<ModuleButton>>();
+	public void initGui() 
+	{
+		super.initGui();
+		this.panels.add(new Panel((this.width - 380) / 2, (this.height - 210) / 2, 380, 210, 0x70000000));
+	}
+	public void onGuiClosed() 
+	{
+		rice.modules.other.ClickGui.disable();
+		mc.currentScreen = null;
+		mc.setIngameFocus();
+	}
+    public boolean doesGuiPauseGame()
+    {
+    	return false;
+    }
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		super.drawScreen(mouseX, mouseY, partialTicks);
+    }
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
+    {
+		super.mouseClicked(mouseX, mouseY, mouseButton);
+    }
+}

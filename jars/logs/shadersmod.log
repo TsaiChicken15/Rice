@@ -1,0 +1,12 @@
+[Shaders] ShadersMod version: 2.4.12
+[Shaders] OpenGL Version: 4.6.0 NVIDIA 456.71
+[Shaders] Vendor:  NVIDIA Corporation
+[Shaders] Renderer: GeForce GTX 1650/PCIe/SSE2
+[Shaders] Capabilities:  2.0  2.1  3.0  3.2  4.0 
+[Shaders] GL_MAX_DRAW_BUFFERS: 8
+[Shaders] GL_MAX_COLOR_ATTACHMENTS_EXT: 8
+[Shaders] GL_MAX_TEXTURE_IMAGE_UNITS: 32
+[Shaders] Load ShadersMod configuration.
+[Shaders] Save ShadersMod configuration.
+[Shaders] Shaders can not be loaded, Fast Render is enabled.
+[Shaders] No shaderpack loaded.

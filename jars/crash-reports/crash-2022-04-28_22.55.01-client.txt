@@ -1,0 +1,112 @@
+---- Minecraft Crash Report ----
+// Don't be sad, have a hug! <3
+
+Time: 2022/4/28 ¤U¤È 10:55
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at net.minecraft.world.World.isValid(World.java:250)
+	at net.minecraft.world.World.getBlockState(World.java:851)
+	at rice.modules.utility.GhostHand.findBed(GhostHand.java:92)
+	at rice.modules.utility.GhostHand.onEvent(GhostHand.java:38)
+	at rice.Client.onEvent(Client.java:84)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:158)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:149)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1885)
+	at net.minecraft.world.World.updateEntity(World.java:1854)
+	at net.minecraft.world.World.updateEntities(World.java:1703)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:2206)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1109)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:414)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.world.World.isValid(World.java:250)
+	at net.minecraft.world.World.getBlockState(World.java:851)
+	at rice.modules.utility.GhostHand.findBed(GhostHand.java:92)
+	at rice.modules.utility.GhostHand.onEvent(GhostHand.java:38)
+	at rice.Client.onEvent(Client.java:84)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:158)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:149)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1885)
+	at net.minecraft.world.World.updateEntity(World.java:1854)
+
+-- Entity being ticked --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 102
+	Entity Name: Player455
+	Entity's Exact location: 643.37, 69.00, 599.55
+	Entity's Block location: 643.00,69.00,599.00 - World: (643,69,599), Chunk: (at 3,4,7 in 40,37; contains blocks 640,0,592 to 655,255,607), Region: (1,1; contains chunks 32,32 to 63,63, blocks 512,0,512 to 1023,255,1023)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1703)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player455'/102, l='MpServer', x=643.37, y=69.00, z=599.55]]
+	Chunk stats: MultiplayerChunkCache: 286, 286
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 1034094 game time, 427231 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 3 total; [EntityPlayerSP['Player455'/102, l='MpServer', x=643.37, y=69.00, z=599.55], EntityBat['Bat'/54067, l='MpServer', x=599.29, y=30.95, z=610.82], EntityBat['Bat'/35300, l='MpServer', x=638.47, y=39.04, z=634.93]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:405)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2773)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:436)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_281, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 740097336 bytes (705 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 1650/PCIe/SSE2 GL version 4.6.0 NVIDIA 456.71, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 456.71
+	OpenGlRenderer: GeForce GTX 1650/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 8

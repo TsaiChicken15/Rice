@@ -1,0 +1,106 @@
+---- Minecraft Crash Report ----
+// I bet Cylons wouldn't have this problem.
+
+Time: 2022/6/1 ¤U¤È 5:59
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at rice.modules.blatant.Scaffold.onEvent(Scaffold.java:537)
+	at rice.Client.onEvent(Client.java:97)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:158)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:149)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1885)
+	at net.minecraft.world.World.updateEntity(World.java:1854)
+	at net.minecraft.world.World.updateEntities(World.java:1703)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:2207)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1110)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:415)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at rice.modules.blatant.Scaffold.onEvent(Scaffold.java:537)
+	at rice.Client.onEvent(Client.java:97)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:158)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:149)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1885)
+	at net.minecraft.world.World.updateEntity(World.java:1854)
+
+-- Entity being ticked --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 80
+	Entity Name: Player484
+	Entity's Exact location: 737.95, 73.00, 658.63
+	Entity's Block location: 737.00,73.00,658.00 - World: (737,73,658), Chunk: (at 1,4,2 in 46,41; contains blocks 736,0,656 to 751,255,671), Region: (1,1; contains chunks 32,32 to 63,63, blocks 512,0,512 to 1023,255,1023)
+	Entity's Momentum: 0.00, -0.08, 0.00
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1703)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player484'/80, l='MpServer', x=737.95, y=73.00, z=658.63]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 1190045 game time, 160730 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 52 total; [EntitySquid['Squid'/128, l='MpServer', x=703.94, y=60.81, z=615.06], EntitySpider['Spider'/896, l='MpServer', x=702.50, y=68.00, z=726.50], EntityCreeper['Creeper'/129, l='MpServer', x=706.47, y=25.00, z=642.91], EntityCreeper['Creeper'/897, l='MpServer', x=715.50, y=67.00, z=722.50], EntityCreeper['Creeper'/642, l='MpServer', x=677.50, y=69.00, z=586.50], EntityCreeper['Creeper'/130, l='MpServer', x=709.41, y=67.00, z=676.00], EntityCreeper['Creeper'/131, l='MpServer', x=708.28, y=67.00, z=675.78], EntitySkeleton['Skeleton'/644, l='MpServer', x=676.16, y=69.00, z=586.50], EntityZombie['Zombie'/132, l='MpServer', x=702.47, y=70.00, z=666.88], EntitySkeleton['Skeleton'/1030, l='MpServer', x=742.16, y=67.00, z=657.13], EntitySkeleton['Skeleton'/1033, l='MpServer', x=661.50, y=11.00, z=639.50], EntityZombie['Zombie'/652, l='MpServer', x=698.50, y=67.00, z=705.50], EntityBat['Bat'/145, l='MpServer', x=758.86, y=39.06, z=691.80], EntityBat['Bat'/1430, l='MpServer', x=804.50, y=53.90, z=654.50], EntitySpider['Spider'/1047, l='MpServer', x=774.50, y=64.00, z=723.50], EntityCreeper['Creeper'/154, l='MpServer', x=763.31, y=71.00, z=660.88], EntityZombie['Zombie'/155, l='MpServer', x=754.50, y=72.00, z=660.50], EntitySkeleton['Skeleton'/1051, l='MpServer', x=764.50, y=64.00, z=727.50], EntitySquid['Squid'/164, l='MpServer', x=771.06, y=60.75, z=611.38], EntityBat['Bat'/934, l='MpServer', x=772.47, y=13.88, z=673.39], EntityCreeper['Creeper'/1318, l='MpServer', x=779.50, y=34.00, z=731.50], EntitySkeleton['Skeleton'/1320, l='MpServer', x=780.50, y=34.00, z=730.50], EntityCreeper['Creeper'/180, l='MpServer', x=807.50, y=67.00, z=582.50], EntityZombie['Zombie'/181, l='MpServer', x=803.50, y=33.00, z=602.50], EntityZombie['Zombie'/182, l='MpServer', x=802.50, y=33.00, z=603.50], EntityCreeper['Creeper'/183, l='MpServer', x=804.50, y=69.00, z=596.50], EntityCreeper['Creeper'/184, l='MpServer', x=811.50, y=49.00, z=614.50], EntityBat['Bat'/185, l='MpServer', x=803.38, y=15.69, z=634.41], EntityBat['Bat'/186, l='MpServer', x=803.28, y=15.09, z=631.50], EntityBat['Bat'/187, l='MpServer', x=803.28, y=15.72, z=643.34], EntitySquid['Squid'/188, l='MpServer', x=801.22, y=61.03, z=659.63], EntityBat['Bat'/189, l='MpServer', x=806.41, y=53.09, z=657.41], EntityBat['Bat'/958, l='MpServer', x=808.25, y=13.84, z=639.25], EntityCreeper['Creeper'/580, l='MpServer', x=808.50, y=68.00, z=605.50], EntityCreeper['Creeper'/581, l='MpServer', x=806.50, y=68.00, z=607.50], EntityCreeper['Creeper'/582, l='MpServer', x=811.50, y=68.00, z=605.50], EntitySkeleton['Skeleton'/1350, l='MpServer', x=702.50, y=70.02, z=663.50], EntityBat['Bat'/971, l='MpServer', x=804.53, y=46.22, z=634.22], EntitySquid['Squid'/990, l='MpServer', x=774.91, y=59.03, z=615.72], EntitySquid['Squid'/991, l='MpServer', x=776.50, y=59.00, z=619.50], EntitySpider['Spider'/1375, l='MpServer', x=746.50, y=65.02, z=726.50], EntityPlayerSP['Player484'/80, l='MpServer', x=737.95, y=73.00, z=658.63], EntityBat['Bat'/355, l='MpServer', x=748.58, y=34.74, z=690.52], EntityEnderman['Enderman'/356, l='MpServer', x=770.50, y=65.00, z=695.50], EntityZombie['Zombie'/360, l='MpServer', x=683.50, y=35.00, z=624.50], EntityZombie['Zombie'/361, l='MpServer', x=680.50, y=35.00, z=629.50], EntityZombie['Zombie'/362, l='MpServer', x=678.53, y=36.00, z=631.06], EntityZombie['Zombie'/618, l='MpServer', x=797.50, y=64.00, z=588.50], EntityCreeper['Creeper'/1005, l='MpServer', x=685.50, y=63.00, z=659.50], EntityZombie['Zombie'/122, l='MpServer', x=673.16, y=64.00, z=634.78], EntitySkeleton['Skeleton'/125, l='MpServer', x=693.31, y=62.38, z=625.47], EntityZombie['Zombie'/639, l='MpServer', x=675.81, y=68.00, z=594.72]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:405)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2774)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:437)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_281, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 697396656 bytes (665 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 12, tallocated: 98
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 1650/PCIe/SSE2 GL version 4.6.0 NVIDIA 456.71, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 456.71
+	OpenGlRenderer: GeForce GTX 1650/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 8

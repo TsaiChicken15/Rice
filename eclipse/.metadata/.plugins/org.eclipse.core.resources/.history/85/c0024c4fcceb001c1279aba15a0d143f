@@ -1,0 +1,20 @@
+package rice.utils;
+
+import java.awt.Color;
+
+public class TickTimer		
+{
+	private long tick = -1L;
+    public boolean hasTimePassed(long ticks)
+    {
+        return tick >= ticks;
+    }
+    public void reset()
+    {
+        tick = 0;
+    }
+    public void update()
+    {
+        tick++;
+    }
+}

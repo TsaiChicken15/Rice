@@ -1,0 +1,74 @@
+package rice.utils;
+
+import java.awt.Color;
+
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.util.AxisAlignedBB;
+
+public class RenderUtil implements MCHook 
+{
+	public static void drawPlayerBox(double posX, double posY, double posZ, int color) 
+	{
+		double x =
+			posX - 0.5
+				- mc.getRenderManager().renderPosX * mc.timer.renderPartialTicks;
+		double y =
+			posY
+				- mc.getRenderManager().renderPosY * mc.timer.renderPartialTicks;
+		double z =
+			posZ - 0.5
+				- mc.getRenderManager().renderPosZ * mc.timer.renderPartialTicks;
+		GL11.glBlendFunc(770, 771);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glLineWidth(2.0F);
+		GL11.glColor4d(0, 1, 0, 0.15F);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthMask(false);
+		//drawColorBox(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0));
+		GL11.glColor4d(1, 1, 1, 0.5F);
+		RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(x + 0.2, y, z + 0.2,
+			x + 0.8, y + 1.8, z + 0.8), color);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthMask(true);	
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glColor4f(1, 1, 1, 1);
+    }
+	private static void quickPolygonCircle(float x, float y, float xRadius, float yRadius, int start, int end, int split) {
+        for(int i = end; i >= start; i -= split) {
+            GL11.glVertex2d(x + Math.sin(i * Math.PI / 180.0D) * xRadius, y + Math.cos(i * Math.PI / 180.0D) * yRadius);
+        }
+    }
+	public static void drawRoundedCornerRect(float x, float y, float x1, float y1, float radius, int color) {
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+        final boolean hasCull = GL11.glIsEnabled(GL11.GL_CULL_FACE);
+        GL11.glDisable(GL11.GL_CULL_FACE);
+
+        GL11.glColor4f((float)(color >> 16 & 255) / 255.0F,(float)(color >> 8 & 255) / 255.0F,(float)(color & 255) / 255.0F,(float)(color >> 24 & 255) / 255.0F);
+        drawRoundedCornerRect(x, y, x1, y1, radius);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);	
+        GL11.glDisable(GL11.GL_BLEND);
+        //GL11.setGlState(GL11.GL_CULL_FACE, hasCull);
+    }
+
+    public static void drawRoundedCornerRect(float x, float y, float x1, float y1, float radius) {
+    	GL11.glBegin(GL11.GL_POLYGON);
+
+        float xRadius = (float) Math.min((x1 - x) * 0.5, radius);
+        float yRadius = (float) Math.min((y1 - y) * 0.5, radius);
+        quickPolygonCircle(x + xRadius,y + yRadius, xRadius, yRadius,180,270,4);
+        quickPolygonCircle(x1 - xRadius,y + yRadius, xRadius, yRadius,90,180,4);
+        quickPolygonCircle(x1 - xRadius,y1 - yRadius, xRadius, yRadius,0,90,4);
+        quickPolygonCircle(x + xRadius,y1 - yRadius, xRadius, yRadius,270,360,4);
+
+        GL11.glEnd();
+    }
+}

@@ -1,0 +1,106 @@
+---- Minecraft Crash Report ----
+// Daisy, daisy...
+
+Time: 2022/4/1 ¤U¤È 11:37
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at disintegration.modules.combat.AutoClicker.onEvent(AutoClicker.java:95)
+	at disintegration.Client.onEvent(Client.java:50)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:158)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:149)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1885)
+	at net.minecraft.world.World.updateEntity(World.java:1854)
+	at net.minecraft.world.World.updateEntities(World.java:1703)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:2205)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1108)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:413)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at disintegration.modules.combat.AutoClicker.onEvent(AutoClicker.java:95)
+	at disintegration.Client.onEvent(Client.java:50)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:158)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:149)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1885)
+	at net.minecraft.world.World.updateEntity(World.java:1854)
+
+-- Entity being ticked --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 258
+	Entity Name: Player106
+	Entity's Exact location: 587.39, 63.00, 206.83
+	Entity's Block location: 587.00,63.00,206.00 - World: (587,63,206), Chunk: (at 11,3,14 in 36,12; contains blocks 576,0,192 to 591,255,207), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Entity's Momentum: -0.14, -0.08, 0.07
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1703)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player106'/258, l='MpServer', x=587.39, y=63.00, z=206.83]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 22542 game time, 23277 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 93 total; [EntityZombie['Zombie'/128, l='MpServer', x=600.34, y=35.00, z=181.34], EntityCreeper['Creeper'/129, l='MpServer', x=608.00, y=54.00, z=186.31], EntityBat['Bat'/130, l='MpServer', x=593.56, y=49.09, z=180.63], EntityItem['item.tile.sand.default'/131, l='MpServer', x=607.81, y=61.00, z=188.13], EntityItem['item.tile.sand.default'/132, l='MpServer', x=607.47, y=62.00, z=185.88], EntityItem['item.tile.sand.default'/133, l='MpServer', x=607.13, y=62.00, z=202.19], EntityItem['item.tile.sand.default'/134, l='MpServer', x=607.56, y=61.00, z=199.81], EntityXPOrb['Experience Orb'/135, l='MpServer', x=600.25, y=61.00, z=232.88], EntitySquid['Squid'/263, l='MpServer', x=532.50, y=57.00, z=144.50], EntityZombie['Zombie'/136, l='MpServer', x=598.53, y=62.41, z=228.44], EntitySquid['Squid'/264, l='MpServer', x=532.50, y=55.28, z=151.50], EntityZombie['Zombie'/137, l='MpServer', x=599.50, y=63.03, z=228.28], EntitySquid['Squid'/265, l='MpServer', x=531.25, y=56.81, z=146.16], EntityBat['Bat'/138, l='MpServer', x=599.22, y=24.78, z=284.94], EntityBat['Bat'/139, l='MpServer', x=599.28, y=26.03, z=277.69], EntityBat['Bat'/140, l='MpServer', x=597.38, y=26.84, z=280.09], EntityItem['item.tile.sand.default'/152, l='MpServer', x=613.25, y=61.00, z=180.13], EntityItem['item.tile.sand.default'/153, l='MpServer', x=616.31, y=62.00, z=181.41], EntityItem['item.tile.sand.default'/154, l='MpServer', x=616.91, y=63.00, z=180.78], EntityItem['item.tile.sand.default'/155, l='MpServer', x=610.75, y=61.00, z=187.16], EntityItem['item.tile.sand.default'/156, l='MpServer', x=613.28, y=62.00, z=179.19], EntityItem['item.tile.sand.default'/157, l='MpServer', x=614.41, y=61.00, z=180.72], EntityItem['item.tile.sand.default'/158, l='MpServer', x=608.09, y=61.00, z=186.81], EntityItem['item.tile.sand.default'/159, l='MpServer', x=611.81, y=62.00, z=179.25], EntityItem['item.tile.sand.default'/160, l='MpServer', x=616.88, y=63.00, z=178.91], EntityItem['item.tile.sand.default'/161, l='MpServer', x=612.88, y=63.00, z=177.81], EntityItem['item.tile.sand.default'/162, l='MpServer', x=608.19, y=61.00, z=185.19], EntityItem['item.tile.sand.default'/163, l='MpServer', x=609.00, y=61.00, z=185.13], EntityItem['item.tile.sand.default'/164, l='MpServer', x=612.78, y=62.00, z=185.88], EntityItem['item.tile.sand.default'/165, l='MpServer', x=609.50, y=61.00, z=189.53], EntityItem['item.tile.sandStone.default'/166, l='MpServer', x=614.88, y=57.00, z=185.16], EntityItem['item.tile.sand.default'/167, l='MpServer', x=610.38, y=61.00, z=188.00], EntityItem['item.tile.sand.default'/168, l='MpServer', x=612.75, y=61.00, z=183.81], EntityPlayerSP['Player106'/258, l='MpServer', x=587.39, y=63.00, z=206.83], EntityItem['item.tile.sand.default'/169, l='MpServer', x=611.31, y=61.00, z=182.41], EntityItem['item.tile.sand.default'/170, l='MpServer', x=613.56, y=61.00, z=184.69], EntityItem['item.tile.sand.default'/171, l='MpServer', x=614.63, y=61.00, z=182.91], EntityItem['item.tile.sand.default'/172, l='MpServer', x=615.81, y=62.00, z=183.00], EntityItem['item.tile.sand.default'/173, l='MpServer', x=617.69, y=63.00, z=183.03], EntityItem['item.tile.sand.default'/174, l='MpServer', x=609.28, y=60.00, z=188.66], EntityItem['item.tile.sand.default'/175, l='MpServer', x=612.38, y=61.00, z=180.94], EntityItem['item.tile.sand.default'/176, l='MpServer', x=611.31, y=61.00, z=199.91], EntityItem['item.tile.sand.default'/177, l='MpServer', x=611.38, y=61.00, z=200.81], EntityItem['item.tile.sand.default'/178, l='MpServer', x=609.59, y=60.00, z=200.88], EntityItem['item.tile.sand.default'/179, l='MpServer', x=610.44, y=61.00, z=202.88], EntityItem['item.tile.sand.default'/180, l='MpServer', x=610.75, y=61.00, z=201.69], EntityItem['item.tile.sand.default'/181, l='MpServer', x=608.38, y=61.00, z=199.22], EntityEnderman['Enderman'/182, l='MpServer', x=615.22, y=64.00, z=228.75], EntityCreeper['Creeper'/183, l='MpServer', x=614.50, y=19.00, z=271.50], EntitySkeleton['Skeleton'/184, l='MpServer', x=615.50, y=28.00, z=276.50], EntityZombie['Zombie'/57, l='MpServer', x=511.50, y=29.00, z=259.50], EntitySkeleton['Skeleton'/191, l='MpServer', x=639.50, y=64.00, z=155.50], EntitySkeleton['Skeleton'/65, l='MpServer', x=528.88, y=19.00, z=144.47], EntityZombie['Zombie'/66, l='MpServer', x=533.44, y=54.00, z=181.03], EntitySkeleton['Skeleton'/67, l='MpServer', x=533.69, y=53.00, z=177.28], EntitySkeleton['Skeleton'/68, l='MpServer', x=539.50, y=56.00, z=183.50], EntityZombie['Zombie'/69, l='MpServer', x=531.72, y=52.00, z=177.34], EntityCreeper['Creeper'/197, l='MpServer', x=644.38, y=63.00, z=163.03], EntityZombie['Zombie'/70, l='MpServer', x=533.22, y=64.00, z=218.50], EntityEnderman['Enderman'/198, l='MpServer', x=655.50, y=65.00, z=205.50], EntitySpider['Spider'/71, l='MpServer', x=537.50, y=65.00, z=221.50], EntityCreeper['Creeper'/201, l='MpServer', x=657.03, y=64.00, z=183.41], EntityCreeper['Creeper'/202, l='MpServer', x=656.50, y=12.00, z=199.50], EntityCreeper['Creeper'/203, l='MpServer', x=659.50, y=12.00, z=199.50], EntityZombie['Zombie'/76, l='MpServer', x=551.84, y=24.00, z=167.63], EntitySkeleton['Skeleton'/204, l='MpServer', x=666.97, y=62.50, z=231.44], EntityCreeper['Creeper'/77, l='MpServer', x=554.00, y=56.00, z=174.44], EntityCreeper['Creeper'/205, l='MpServer', x=661.50, y=15.00, z=247.50], EntitySkeleton['Skeleton'/78, l='MpServer', x=554.50, y=18.00, z=182.50], EntityZombie['Zombie'/79, l='MpServer', x=550.50, y=58.00, z=181.69], EntityZombie['Zombie'/80, l='MpServer', x=559.50, y=69.00, z=188.50], EntityCreeper['Creeper'/81, l='MpServer', x=548.66, y=69.00, z=186.50], EntitySkeleton['Skeleton'/85, l='MpServer', x=573.88, y=54.00, z=135.50], EntityItem['item.tile.sand.default'/86, l='MpServer', x=575.13, y=62.00, z=221.75], EntityItem['item.tile.sand.default'/87, l='MpServer', x=575.13, y=62.00, z=220.13], EntityItem['item.tile.sand.default'/88, l='MpServer', x=575.84, y=63.00, z=219.41], EntityItem['item.tile.sand.default'/89, l='MpServer', x=575.84, y=63.00, z=222.56], EntityXPOrb['Experience Orb'/90, l='MpServer', x=566.59, y=65.00, z=231.69], EntityXPOrb['Experience Orb'/91, l='MpServer', x=567.53, y=65.00, z=231.91], EntityCreeper['Creeper'/92, l='MpServer', x=569.88, y=68.00, z=262.78], EntityZombie['Zombie'/100, l='MpServer', x=591.66, y=70.00, z=133.66], EntityItem['item.tile.sand.default'/102, l='MpServer', x=579.09, y=63.00, z=220.09], EntityItem['item.item.string'/103, l='MpServer', x=579.09, y=62.00, z=222.88], EntityItem['item.item.sulphur'/104, l='MpServer', x=576.13, y=61.00, z=220.69], EntityItem['item.tile.sand.default'/105, l='MpServer', x=578.22, y=63.00, z=218.41], EntityItem['item.tile.sand.default'/106, l='MpServer', x=577.31, y=62.00, z=218.88], EntityItem['item.tile.sand.default'/107, l='MpServer', x=578.88, y=63.00, z=223.31], EntityItem['item.tile.sand.default'/108, l='MpServer', x=577.56, y=62.00, z=219.66], EntityItem['item.tile.sand.default'/109, l='MpServer', x=579.88, y=62.00, z=220.22], EntitySkeleton['Skeleton'/112, l='MpServer', x=577.50, y=70.00, z=285.50], EntityZombie['Zombie'/125, l='MpServer', x=598.50, y=52.00, z=135.50], EntityBat['Bat'/126, l='MpServer', x=589.34, y=21.02, z=171.56], EntityCreeper['Creeper'/127, l='MpServer', x=595.97, y=33.00, z=189.53]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:405)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2772)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:435)
+	at net.minecraft.client.main.Main.main(Main.java:114)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_321, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 840559128 bytes (801 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 1650/PCIe/SSE2 GL version 4.6.0 NVIDIA 456.71, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 456.71
+	OpenGlRenderer: GeForce GTX 1650/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 8
