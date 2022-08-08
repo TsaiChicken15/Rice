@@ -1035,7 +1035,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
      * application (or web page) is exited.
      */
     public void shutdownMinecraftApplet()
-    {    	
+    {
+    	Client.shutdown();
+    	
         try
         {
             this.stream.shutdownStream();
@@ -1054,7 +1056,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
         finally
         {
-        	Client.shutdown();
             Display.destroy();
 
             if (!this.hasCrashed)

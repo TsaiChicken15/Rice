@@ -49,14 +49,11 @@ public class Client implements MCHook
 	public static final String _name = "Rice";
 	public static CopyOnWriteArrayList<Module> modules = new CopyOnWriteArrayList();
 	public static AltManager altManager = new AltManager();
-	public static FileManager fileManager = new FileManager();
 	public static rice.ui.clickgui.simple.ClickGui ClickGui = new rice.ui.clickgui.simple.ClickGui();
 	public static Hud hud = new Hud();
 	public static void setup() 
 	{
 		System.out.println("[ " + _name + " Client ] Client launched.");
-		
-		fileManager.init();
 		
 		modules.add(new ActiveMods());
 		modules.add(new AimAssist());
@@ -91,9 +88,7 @@ public class Client implements MCHook
 		modules.add(new Velocity());
 		modules.add(new WTap());
 	}
-	public static void shutdown() {
-		fileManager.saveSettings();
-	}
+	public static void shutdown() {}
 	public static Module isEnabled(String s)
 	{
 		for(Module m: getModule()) 

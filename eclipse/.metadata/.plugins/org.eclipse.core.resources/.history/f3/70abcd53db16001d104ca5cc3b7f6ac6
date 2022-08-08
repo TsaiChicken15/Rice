@@ -91,9 +91,7 @@ public class Client implements MCHook
 		modules.add(new Velocity());
 		modules.add(new WTap());
 	}
-	public static void shutdown() {
-		fileManager.saveSettings();
-	}
+	public static void shutdown() {}
 	public static Module isEnabled(String s)
 	{
 		for(Module m: getModule()) 
