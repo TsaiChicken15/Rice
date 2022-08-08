@@ -1,0 +1,166 @@
+ActiveMods Enabled true
+ActiveMods Color White
+ActiveMods Background true
+ActiveMods AntiAchievement false
+ 
+AimAssist Enabled true
+AimAssist Range 5.0
+AimAssist FOV 180.0
+AimAssist Jitter 0.0
+AimAssist Force 90.0
+AimAssist Horizontal 8.0
+AimAssist Vertical 0.0
+AimAssist OnlyClick true
+AimAssist OnlyOnTarget false
+AimAssist StrafeIncrease false
+AimAssist NoBlockBreak true
+AimAssist AimMode Head
+AimAssist Priority Distance
+AimAssist Player true
+AimAssist Animal false
+AimAssist Golem false
+AimAssist Mob false
+AimAssist Villager false
+AimAssist Invisible false
+ 
+Animations Enabled true
+ 
+Alts Enabled true
+Alts Safety Ctrl + Shift
+ 
+Auto Enabled true
+Auto Cheats Ghost
+ 
+AutoArmor Enabled false
+AutoArmor MinDelay 100.0
+AutoArmor MaxDelay 150.0
+AutoArmor OnlyInv true
+ 
+AutoClicker Enabled true
+AutoClicker LimitItem None
+AutoClicker BlockHit false
+AutoClicker MinCPS 5.0
+AutoClicker MaxCPS 8.0
+AutoClicker Jitter 0.0
+AutoClicker Duration 200.0
+ 
+AutoTool Enabled false
+ 
+CameraClip Enabled true
+ 
+Chams Enabled false
+Chams Invisible true
+Chams Item false
+Chams Color Default
+Chams Red 255.0
+Chams Green 255.0
+Chams Blue 255.0
+Chams Alpha 200.0
+ 
+ChestSteal Enabled false
+ChestSteal MinDelay 100.0
+ChestSteal MaxDelay 150.0
+ChestSteal AutoClose false
+ChestSteal MinAutoCloseDelay 0.0
+ChestSteal MaxAutoCloseDelay 0.0
+ChestSteal TakeRandomly false
+ChestSteal SmartSteal true
+ 
+ClickGui Enabled false
+ClickGui Color White
+ClickGui Safety true
+ 
+ESP Enabled false
+ESP Invisible true
+ESP Rainbow true
+ESP Red 255.0
+ESP Green 255.0
+ESP Blue 255.0
+ESP Alpha 200.0
+ 
+FastPlace Enabled false
+FastPlace Speed 1.0
+ 
+FullBright Enabled false
+ 
+Hitbox Enabled false
+Hitbox Size 0.1
+Hitbox Chance 100.0
+ 
+InvWalk Enabled false
+InvWalk NoSprint false
+InvWalk NoOpenPacket false
+ 
+ItemPhysics Enabled true
+ 
+KeepSprint Enabled false
+ 
+NameTags Enabled false
+NameTags Durability true
+NameTags Invisibles true
+NameTags Scale 5.0
+ 
+NoRender Enabled true
+NoRender NoAchievement true
+NoRender NoBlindness true
+NoRender NoHurtCam true
+NoRender NoNausea true
+NoRender NoPumpkin true
+NoRender FireHeight -0.3
+ 
+NoRotate Enabled false
+ 
+Panic Enabled false
+ 
+Parkour Enabled false
+ 
+Reach Enabled true
+Reach AttackRange 3.0
+Reach BuildRange 4.5
+Reach Chance 100.0
+Reach OnlySpirnt false
+Reach NoVertical false
+Reach NoWater false
+ 
+Refill Enabled true
+Refill Mode Potion
+Refill MinDelay 150.0
+Refill MaxDelay 200.0
+Refill InvOnly false
+ 
+SafeWalk Enabled false
+SafeWalk Mode Legit
+ 
+Scaffold Enabled false
+Scaffold Mode Legit
+Scaffold AutoSwitch true
+ 
+Sprint Enabled true
+ 
+ThrowPot Enabled true
+ThrowPot Mode Potion
+ThrowPot Health 15.0
+ThrowPot MinDelay 150.0
+ThrowPot MaxDelay 200.0
+ThrowPot LimitAngle true
+ThrowPot MinAngle 80.0
+ 
+ToggleSound Enabled true
+ToggleSound Sound Button
+ 
+Tracer Enabled false
+Tracer Invisible true
+ 
+Velocity Enabled true
+Velocity Horizontal 100.0
+Velocity Vertical 100.0
+Velocity Chance 100.0
+Velocity Spoof false
+Velocity AirOnly false
+Velocity NoWater false
+ 
+WTap Enabled true
+WTap MoveOnly true
+WTap GroundOnly false
+WTap Delay 0.0
+ 

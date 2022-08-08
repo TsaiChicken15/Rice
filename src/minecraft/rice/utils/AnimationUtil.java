@@ -13,15 +13,15 @@ public class AnimationUtil implements MCHook
 		ItemRenderer ir = mc.getItemRenderer();
 		float f = 1.0F - (ir.prevEquippedProgress + (ir.equippedProgress - ir.prevEquippedProgress) * partialTicks);
 		float swingProgress = mc.thePlayer.getSwingProgress(partialTicks);
-		float swingProgressReversed = 1.0f - swingProgress;
 		ir.func_178096_b(f, swingProgress);
 		ir.func_178103_d();
 	}
-	public static void animTap(float partialTicks) 
+	public static void animNone(float partialTicks) 
 	{
-	    ItemRenderer ir = mc.getItemRenderer();
-	    float swingProgress = mc.thePlayer.getSwingProgress(partialTicks);
-	    ir.func_178096_b(0.0F, swingProgress - 1.0F);
-	    ir.func_178103_d();
+		ItemRenderer ir = mc.getItemRenderer();
+		float f = 1.0F - (ir.prevEquippedProgress + (ir.equippedProgress - ir.prevEquippedProgress) * partialTicks);
+		float swingProgress = mc.thePlayer.getSwingProgress(partialTicks);
+		ir.func_178096_b(f, 0);
+		ir.func_178103_d();
 	}
 }	

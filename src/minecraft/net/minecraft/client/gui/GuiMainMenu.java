@@ -277,19 +277,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 	            {
 	            	if(m.isToggled())
 	            	{
-	            		if(rice.modules.other.Alts.safetyValue.is("Ctrl + Shift") && GuiScreen.isCtrlKeyDown() && GuiScreen.isShiftKeyDown())
-	                	{
-	                		this.mc.displayGuiScreen(new GuiAltLogin(this));
-	                	}
-	                	else if(rice.modules.other.Alts.safetyValue.is("Shift") && GuiScreen.isShiftKeyDown())
-	                	{
-	                		this.mc.displayGuiScreen(new GuiAltLogin(this));
-	                	}
-	                	else if(rice.modules.other.Alts.safetyValue.is("Ctrl") && GuiScreen.isCtrlKeyDown())
-	                	{
-	                		this.mc.displayGuiScreen(new GuiAltLogin(this));
-	                	}
-	                	else if(rice.modules.other.Alts.safetyValue.is("None"))
+	            		if(Client.isEnabled("AntiMisclick") != null && GuiScreen.isCtrlKeyDown() && GuiScreen.isShiftKeyDown())
 	                	{
 	                		this.mc.displayGuiScreen(new GuiAltLogin(this));
 	                	}

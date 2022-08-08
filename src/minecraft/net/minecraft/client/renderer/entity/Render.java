@@ -394,98 +394,17 @@ public abstract class Render
             GlStateManager.func_179090_x();
             var16.startDrawingQuads();
             int var18 = var12.getStringWidth(p_147906_2_) / 2;
-
-            if(Client.isEnabled("NameTags") != null && (p_147906_1_ instanceof EntityPlayer || p_147906_1_ instanceof EntityMob || p_147906_1_ instanceof EntityAnimal || p_147906_1_ instanceof EntityVillager || p_147906_1_ instanceof EntityGolem))
-            {
-            	var18 = var12.getStringWidth("§l" + p_147906_2_) / 2;
-        		var16.func_178960_a(255.0F, 255.0F, 255.0F, 0.5F);
- 	            var16.addVertex((double)(-var18 - 1), (double)(-1 + var17), 0.0D);
- 	            var16.addVertex((double)(-var18 - 1), (double)(11 + var17), 0.0D);
- 	            var16.addVertex((double)(var18 + 1), (double)(11 + var17), 0.0D);
- 	            var16.addVertex((double)(var18 + 1), (double)(-1 + var17), 0.0D);
- 	            var15.draw();
-            }
-            else
-            {
-	            var16.func_178960_a(0.0F, 0.0F, 0.0F, 0.25F);
-	            var16.addVertex((double)(-var18 - 1), (double)(-1 + var17), 0.0D);
-	            var16.addVertex((double)(-var18 - 1), (double)(8 + var17), 0.0D);
-	            var16.addVertex((double)(var18 + 1), (double)(8 + var17), 0.0D);
-	            var16.addVertex((double)(var18 + 1), (double)(-1 + var17), 0.0D);
-	            var15.draw();
-            }
-            
-            if(Client.isEnabled("NameTags") != null && (p_147906_1_ instanceof EntityPlayer || p_147906_1_ instanceof EntityMob || p_147906_1_ instanceof EntityAnimal || p_147906_1_ instanceof EntityVillager || p_147906_1_ instanceof EntityGolem))
-            {            	
-            	GlStateManager.func_179098_w();
-                var12.drawStringWithShadow("§l" + p_147906_2_, -var18, var17, 553648127);
-                
-                Gui.drawRect((-var18 - 1), (var17 + var12.FONT_HEIGHT - 1), (-var18 - 1) + (var18 * 2 + 2) * ((EntityLivingBase)p_147906_1_).getHealth() / ((EntityLivingBase)p_147906_1_).getMaxHealth(), (var17 + var12.FONT_HEIGHT), -1878982912);
-                Gui.drawRect((-var18 - 1), (var17 + var12.FONT_HEIGHT), (-var18 - 1 + (var18 * 2 + 2) * ((EntityLivingBase)p_147906_1_).getTotalArmorValue() / 20), (var17 + var12.FONT_HEIGHT + 1), -1879047937);
-                
-                Gui.drawRect((-var18 - 1), 
-                		(var17 + var12.FONT_HEIGHT - 10), 
-                		(-var18 - 1 + (var18 * 2 + 2)), 
-                		(var17 + var12.FONT_HEIGHT - 11), 
-                		0xffffffff);
-                Gui.drawRect((-var18 - 1), 
-                		(var17 + var12.FONT_HEIGHT + 1), 
-                		(-var18 - 1 + (var18 * 2 + 2)), 
-                		(var17 + var12.FONT_HEIGHT + 2), 
-                		0xffffffff);
-                Gui.drawRect((-var18 - 1), 
-                		(var17 + var12.FONT_HEIGHT - 11), 
-                		(-var18) - 2, 
-                		(var17 + var12.FONT_HEIGHT + 2), 
-                		0xffffffff);
-                Gui.drawRect((-var18 - 1 + 
-                		(var18 * 2 + 2)), 
-                		(var17 + var12.FONT_HEIGHT - 11), 
-                		(-var18 - 1 + (var18 * 2 + 2)) + 1, 
-                		(var17 + var12.FONT_HEIGHT + 2), 
-                		0xffffffff);
-                
-                var12.drawStringWithShadow("§l" + p_147906_2_, -var12.getStringWidth("§l" + p_147906_2_) / 2, var17, -1);
-                
-                GlStateManager.enableDepth();
-                GlStateManager.depthMask(true);
-                
-                Gui.drawRect((-var18 - 1), (var17 + var12.FONT_HEIGHT - 1), (-var18 - 1) + (var18 * 2 + 2) * ((EntityLivingBase)p_147906_1_).getHealth() / ((EntityLivingBase)p_147906_1_).getMaxHealth(), (var17 + var12.FONT_HEIGHT), -1878982912);
-                Gui.drawRect((-var18 - 1), (var17 + var12.FONT_HEIGHT), (-var18 - 1 + (var18 * 2 + 2) * ((EntityLivingBase)p_147906_1_).getTotalArmorValue() / 20), (var17 + var12.FONT_HEIGHT + 1), -1879047937);
-                
-                Gui.drawRect((-var18 - 1), 
-                		(var17 + var12.FONT_HEIGHT - 10), 
-                		(-var18 - 1 + (var18 * 2 + 2)), 
-                		(var17 + var12.FONT_HEIGHT - 11), 
-                		0xffffffff);
-                Gui.drawRect((-var18 - 1), 
-                		(var17 + var12.FONT_HEIGHT + 1), 
-                		(-var18 - 1 + (var18 * 2 + 2)), 
-                		(var17 + var12.FONT_HEIGHT + 2), 
-                		0xffffffff);
-                Gui.drawRect((-var18 - 1), 
-                		(var17 + var12.FONT_HEIGHT - 11), 
-                		(-var18) - 2, 
-                		(var17 + var12.FONT_HEIGHT + 2), 
-                		0xffffffff);
-                Gui.drawRect((-var18 - 1 + 
-                		(var18 * 2 + 2)), 
-                		(var17 + var12.FONT_HEIGHT - 11), 
-                		(-var18 - 1 + (var18 * 2 + 2)) + 1, 
-                		(var17 + var12.FONT_HEIGHT + 2), 
-                		0xffffffff);
-            	
-                var12.drawStringWithShadow("§l" + p_147906_2_, -var12.getStringWidth("§l" + p_147906_2_) / 2, var17, -1);
-            }
-            else
-            {
-            	GlStateManager.func_179098_w();
-                var12.drawStringWithShadow(p_147906_2_, -var12.getStringWidth(p_147906_2_) / 2, var17, 553648127);
-                GlStateManager.enableDepth();
-                GlStateManager.depthMask(true);
-                var12.drawStringWithShadow(p_147906_2_, -var12.getStringWidth(p_147906_2_) / 2, var17, -1);
-            }
-            
+            var16.func_178960_a(0.0F, 0.0F, 0.0F, 0.25F);
+            var16.addVertex((double)(-var18 - 1), (double)(-1 + var17), 0.0D);
+            var16.addVertex((double)(-var18 - 1), (double)(8 + var17), 0.0D);
+            var16.addVertex((double)(var18 + 1), (double)(8 + var17), 0.0D);
+            var16.addVertex((double)(var18 + 1), (double)(-1 + var17), 0.0D);
+            var15.draw();
+        	GlStateManager.func_179098_w();
+            var12.drawStringWithShadow(p_147906_2_, -var12.getStringWidth(p_147906_2_) / 2, var17, 553648127);
+            GlStateManager.enableDepth();
+            GlStateManager.depthMask(true);
+            var12.drawStringWithShadow(p_147906_2_, -var12.getStringWidth(p_147906_2_) / 2, var17, -1);
             GlStateManager.enableLighting();
             GlStateManager.disableBlend();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

@@ -1,6 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
 import java.util.Random;
+
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.model.IBakedModel;
@@ -11,8 +12,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import rice.Client;
+import rice.events.Event;
 import rice.events.EventType;
 import rice.events.listeners.EventRenderItem;
+import rice.utils.PhysicUtil;
 
 public class RenderEntityItem extends Render
 {
@@ -105,7 +108,14 @@ public class RenderEntityItem extends Render
             this.renderManager.renderEngine.getTexture(this.func_177076_a(p_177075_1_)).func_174936_b(false, false);
             var11 = true;
         }
-
+        
+        if(Client.isEnabled("ItemPhysics") != null) {
+            PhysicUtil.doRenderItemPhysic(p_177075_1_, p_177075_2_, p_177075_4_, p_177075_6_, p_177075_8_, p_177075_9_);
+            event.setType(EventType.POST);
+            Client.onEvent((Event)event);
+            return;
+        }
+        
         GlStateManager.enableRescaleNormal();
         GlStateManager.alphaFunc(516, 0.1F);
         GlStateManager.enableBlend();

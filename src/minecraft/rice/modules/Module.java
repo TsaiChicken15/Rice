@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import rice.Client;
 import rice.events.Event;
-import rice.modules.Module.Category;
-import rice.modules.other.Auto;
 import rice.modules.other.ToggleSound;
 import rice.notification.Notification;
 import rice.notification.NotificationManager;
@@ -80,13 +79,13 @@ public class Module implements MCHook
     	if (this.toggled) {
             onEnable();
             if(this.name == "ClickGui") return;
-            if(Auto.modeValue.is("Ghost") && this.getCategory() == Category.BLATANT) return;
-            NotificationManager.show(new Notification(NotificationType.INFO, "¡±l" + this.name + " ¡±lEnabled", 1));
+            if(Client.isEnabled("AntiBlatant") != null && this.getCategory() == Category.BLATANT) return;
+            NotificationManager.show(new Notification(NotificationType.INFO, "Â§lâœ”", this.name, 1));
         } else {
             onDisable();
             if(this.name == "ClickGui") return;
-            if(Auto.modeValue.is("Ghost") && this.getCategory() == Category.BLATANT) return;
-            NotificationManager.show(new Notification(NotificationType.INFO, "¡±l" + this.name + " ¡±lDisabled", 1));
+            if(Client.isEnabled("AntiBlatant") != null && this.getCategory() == Category.BLATANT) return;
+            NotificationManager.show(new Notification(NotificationType.INFO, "Â§lâœ˜", this.name, 1));
         }
     	if(this.name != "ClickGui")
     		ToggleSound.playButtonPressSound();

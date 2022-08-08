@@ -23,10 +23,12 @@ public class FileManager {
 	private static final Logger logger = LogManager.getLogger();
 	private static Gson gson = new Gson();
 	
-	private static File SETTING_DIR;
+	public static File FOLDER_DIR = new File("rice");
+	public static File SETTING_DIR;
 	
 	public void init() {
-		SETTING_DIR = new File("rice.txt");
+		if(!FOLDER_DIR.exists()) FOLDER_DIR.mkdirs();
+		SETTING_DIR = new File(FOLDER_DIR, "rice.txt");
 		loadSettings();
 	}
 	
@@ -53,12 +55,15 @@ public class FileManager {
 	
 	public void loadSettings() {
 		try{
+			//System.out.println("false");
 			if (!this.SETTING_DIR.exists()) return;
+			//System.out.println("true");
 
 			BufferedReader var9 = new BufferedReader(new FileReader(this.SETTING_DIR));
 			String var2 = "";
 
 			while ((var2 = var9.readLine()) != null){
+				//System.out.println("loaded");
 				try{
 					if(var2.equals(" ")) continue;
 					String[] var8 = var2.split(" ");

@@ -1,0 +1,20 @@
+package rice.events.listeners;
+
+import rice.events.Event;
+
+public class EventRender3D extends Event<EventRender3D> 
+{
+	public float partialTicks;
+	public EventRender3D(float tick) 
+	{
+		this.partialTicks = tick;
+	}
+	public float getTick() 
+	{
+		return partialTicks;
+	}
+	public void setTick(int tick) 
+	{
+		this.partialTicks = tick;
+	}
+}

@@ -26,7 +26,7 @@ public class Refill extends Module implements MCHook
 	public static ModeSetting modeValue = new ModeSetting("Mode","Potion","Potion","Soup","Both");
 	public static NumberSetting minDelayValue = new NumberSetting("MinDelay", 150, 0, 400, 1);
 	public static NumberSetting maxDelayValue = new NumberSetting("MaxDelay", 200, 0, 400, 1);
-	public static BooleanSetting onlyInvValue = new BooleanSetting("InvOnly",false);
+	public static BooleanSetting onlyInvValue = new BooleanSetting("InvOnly",true);
 	private MSTimer timer = new MSTimer();
 	public void onEvent2(Event e)
 	{

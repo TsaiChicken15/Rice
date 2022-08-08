@@ -1,19 +1,18 @@
 package rice.notification;
 
-import java.awt.Color;
 import java.text.DecimalFormat;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import rice.utils.MCHook;
 
-public class Notification {
+public class Notification implements MCHook{
     private NotificationType type;
-    private String messsage;
+    private String messsage, title;
     private long start;
 
     private long fadedIn;
@@ -22,8 +21,9 @@ public class Notification {
 
     private int length;
 
-    public Notification(NotificationType type, String messsage, int length) {
+    public Notification(NotificationType type, String title, String messsage, int length) {
         this.type = type;
+        this.title = title;
         this.messsage = messsage;
         this.length = length;
         fadedIn = 200 * length;
@@ -47,45 +47,94 @@ public class Notification {
     {
     	FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
     	DecimalFormat frmt = new DecimalFormat("#.#");
+    	ScaledResolution GuiScreen = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         double offset = 0;
         int width = 0;
-        if(width <= fontRenderer.getStringWidth(messsage + " ()" + frmt.format(length - getTime() / 1000f)))
+        if(width <= fontRenderer.getStringWidth(messsage + " (0.0)"))
         {
-        	width = fontRenderer.getStringWidth(messsage + " ()" + frmt.format(length - getTime() / 1000f)) + 16;
+        	width = fontRenderer.getStringWidth(messsage + " (0.0)") + 16;
         }
-        int height = 20;
+        int height = 30;
         long time = getTime();
 
         if (time < fadedIn) {
-            offset = Math.tanh(time / (double) (fadedIn) * 3.0) * width;
+            offset = Math.tanh(time / (double) (fadedIn) * 3.0) * GuiScreen.getScaledHeight() / 4;
         } else if (time > fadeOut) {
-            offset = (Math.tanh(3.0 - (time - fadeOut) / (double) (end - fadeOut) * 3.0) * width);
+            offset = (Math.tanh(3.0 - (time - fadeOut) / (double) (end - fadeOut) * 3.0) * GuiScreen.getScaledHeight() / 4);
         } else {
-            offset = width;
+            offset = GuiScreen.getScaledHeight() / 4;
         }
 
         
-
+        
         if (type == NotificationType.INFO)
         {
-	        drawRect(GuiScreen.width - offset, GuiScreen.height - 5 - height, GuiScreen.width - offset + offset * time / end, GuiScreen.height - 5, 0xa000ff00);
-	        drawRect(GuiScreen.width - offset + offset * time / end, GuiScreen.height - 5 - height, GuiScreen.width, GuiScreen.height - 5, 0x4000ff00);
+        	drawRect(GuiScreen.getScaledWidth() / 2 - width / 2, 
+        			GuiScreen.getScaledHeight() - offset - 5 - height, 
+        			GuiScreen.getScaledWidth() / 2 - width / 2 + width * time / end, 
+        			GuiScreen.getScaledHeight() - offset - 5, 
+        			0xa000ff00);
+        	drawRect(GuiScreen.getScaledWidth() / 2 - width / 2 + width * time / end, 
+        			GuiScreen.getScaledHeight() - offset - 5 - height, 
+        			GuiScreen.getScaledWidth() / 2 + width / 2, 
+        			GuiScreen.getScaledHeight() - offset - 5, 
+        			0x4000ff00);
         }
         else if (type == NotificationType.WARNING)
         {
-        	drawRect(GuiScreen.width - offset, GuiScreen.height - 5 - height, GuiScreen.width - offset + offset * time / end, GuiScreen.height - 5, 0xa0ff9600);
-	        drawRect(GuiScreen.width - offset + offset * time / end, GuiScreen.height - 5 - height, GuiScreen.width, GuiScreen.height - 5, 0x40ff9600);
+        	drawRect(GuiScreen.getScaledWidth() / 2 - width / 2, 
+        			GuiScreen.getScaledHeight() - offset - 5 - height, 
+        			GuiScreen.getScaledWidth() / 2 - width / 2 + width * time / end, 
+        			GuiScreen.getScaledHeight() - offset - 5, 
+        			0xa0ff9600);
+        	drawRect(GuiScreen.getScaledWidth() / 2 - width / 2 + width * time / end, 
+        			GuiScreen.getScaledHeight() - offset - 5 - height, 
+        			GuiScreen.getScaledWidth() / 2 + width / 2, 
+        			GuiScreen.getScaledHeight() - offset - 5, 
+        			0x40ff9600);
         }
         else 
         {
-        	drawRect(GuiScreen.width - offset, GuiScreen.height - 5 - height, GuiScreen.width - offset + offset * time / end, GuiScreen.height - 5, 0xa0ff0000);
-	        drawRect(GuiScreen.width - offset + offset * time / end, GuiScreen.height - 5 - height, GuiScreen.width, GuiScreen.height - 5, 0x40ff0000);
+        	drawRect(GuiScreen.getScaledWidth() / 2 - width / 2, 
+        			GuiScreen.getScaledHeight() - offset - 5 - height, 
+        			GuiScreen.getScaledWidth() / 2 - width / 2 + width * time / end, 
+        			GuiScreen.getScaledHeight() - offset - 5, 
+        			0xa0ff0000);
+        	drawRect(GuiScreen.getScaledWidth() / 2 - width / 2 + width * time / end, 
+        			GuiScreen.getScaledHeight() - offset - 5 - height, 
+        			GuiScreen.getScaledWidth() / 2 + width / 2, 
+        			GuiScreen.getScaledHeight() - offset - 5, 
+        			0x40ff0000);
         }
-        drawRect(GuiScreen.width - offset, GuiScreen.height - 5 - height, GuiScreen.width - offset + 1, GuiScreen.height - 5, -1);
-        drawRect(GuiScreen.width - offset, GuiScreen.height - 5 - height, GuiScreen.width, GuiScreen.height - 6 - height, -1);
-        drawRect(GuiScreen.width - offset, GuiScreen.height - 4, GuiScreen.width, GuiScreen.height - 5, -1);
+        drawRect(GuiScreen.getScaledWidth() / 2 - width / 2, 
+    			GuiScreen.getScaledHeight() - offset - 5 - height - 1.5, 
+    			GuiScreen.getScaledWidth() / 2 + width / 2, 
+    			GuiScreen.getScaledHeight() - offset - 5 - height, 
+    			-1);
+        drawRect(GuiScreen.getScaledWidth() / 2 - width / 2, 
+    			GuiScreen.getScaledHeight() - offset - 5, 
+    			GuiScreen.getScaledWidth() / 2 + width / 2, 
+    			GuiScreen.getScaledHeight() - offset - 5 + 1.5, 
+    			-1);
+        drawRect(GuiScreen.getScaledWidth() / 2 - width / 2 - 1.5, 
+    			GuiScreen.getScaledHeight() - offset - 5 - height - 1.5, 
+    			GuiScreen.getScaledWidth() / 2 - width / 2, 
+    			GuiScreen.getScaledHeight() - offset - 5 + 1.5, 
+    			-1);
+        drawRect(GuiScreen.getScaledWidth() / 2 + width / 2, 
+    			GuiScreen.getScaledHeight() - offset - 5 - height - 1.5, 
+    			GuiScreen.getScaledWidth() / 2 + width / 2 + 1.5, 
+    			GuiScreen.getScaledHeight() - offset - 5 + 1.5, 
+    			-1);
 
-        fontRenderer.drawStringWithShadow(messsage + " (" + frmt.format(length - getTime() / 1000f) + ")", (int) (GuiScreen.width - offset + 8), GuiScreen.height - height / 2 - fontRenderer.FONT_HEIGHT, -1);
+        fontRenderer.drawStringWithShadow(title, 
+        		(int) (GuiScreen.getScaledWidth() / 2 - fontRenderer.getStringWidth(title) / 2), 
+        		(float) (GuiScreen.getScaledHeight() - offset - 5 - height + 4),
+        		-1);
+        fontRenderer.drawStringWithShadow(messsage + " (" + frmt.format(length - getTime() / 1000f) + ")", 
+        		(int) (GuiScreen.getScaledWidth() / 2 - fontRenderer.getStringWidth(messsage + " (" + frmt.format(length - getTime() / 1000f) + ")") / 2), 
+        		(float) (GuiScreen.getScaledHeight() - offset - 5 - height + 8 + fontRenderer.FONT_HEIGHT), 
+        		-1);
     }
 
     public static void drawRect(double left, double top, double right, double bottom, int color) {

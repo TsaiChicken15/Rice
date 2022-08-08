@@ -4,17 +4,17 @@ import rice.events.Event;
 
 public class EventRender3D extends Event<EventRender3D> 
 {
-	public float tick;
-	public EventRender3D(float tick) 
+	public float partialTicks;
+	public EventRender3D(float partialTicks) 
 	{
-		this.tick = tick;
+		this.partialTicks = partialTicks;
 	}
-	public float getTick() 
+	public float getPartialTicks() 
 	{
-		return tick;
+		return partialTicks;
 	}
-	public void setTick(int tick) 
+	public void setPartialTicks(int partialTicks) 
 	{
-		this.tick = tick;
+		this.partialTicks = partialTicks;
 	}
 }

@@ -1,0 +1,5 @@
+package rice.command;
+
+public class Command {
+
+}

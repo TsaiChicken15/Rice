@@ -1,12 +1,15 @@
 package rice;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.minecraft.client.Minecraft;
 import rice.alt.AltManager;
+import rice.command.CommandManager;
 import rice.events.Event;
+import rice.events.listeners.EventChat;
 import rice.events.listeners.EventKey;
 import rice.modules.Module;
 import rice.modules.Module.Category;
@@ -22,17 +25,20 @@ import rice.modules.combat.ThrowPot;
 import rice.modules.combat.Velocity;
 import rice.modules.combat.WTap;
 import rice.modules.other.ActiveMods;
-import rice.modules.other.Auto;
+import rice.modules.other.AntiBlatant;
+import rice.modules.other.AntiMisclick;
 import rice.modules.other.ClickGui;
 import rice.modules.other.NoRotate;
 import rice.modules.other.Panic;
 import rice.modules.other.ToggleSound;
 import rice.modules.render.Animations;
+import rice.modules.render.CameraClip;
 import rice.modules.render.Chams;
 import rice.modules.render.ESP;
 import rice.modules.render.FullBright;
+import rice.modules.render.ItemPhysics;
 import rice.modules.render.NameTags;
-import rice.modules.render.Tracer;
+import rice.modules.render.NoRender;
 import rice.modules.utility.AutoArmor;
 import rice.modules.utility.AutoTool;
 import rice.modules.utility.ChestSteal;
@@ -40,7 +46,6 @@ import rice.modules.utility.FastPlace;
 import rice.modules.utility.Parkour;
 import rice.modules.utility.SafeWalk;
 import rice.modules.utility.Scaffold;
-import rice.modules.utility.SpeedMine;
 import rice.ui.Hud;
 import rice.utils.MCHook;
 
@@ -50,22 +55,24 @@ public class Client implements MCHook
 	public static CopyOnWriteArrayList<Module> modules = new CopyOnWriteArrayList();
 	public static AltManager altManager = new AltManager();
 	public static FileManager fileManager = new FileManager();
+	public static CommandManager commandManager = new CommandManager();
 	public static rice.ui.clickgui.simple.ClickGui ClickGui = new rice.ui.clickgui.simple.ClickGui();
 	public static Hud hud = new Hud();
 	public static void setup() 
 	{
 		System.out.println("[ " + _name + " Client ] Client launched.");
-		
-		fileManager.init();
+		commandManager.setup();
 		
 		modules.add(new ActiveMods());
 		modules.add(new AimAssist());
 		modules.add(new Animations());
 		modules.add(new rice.modules.other.Alts());
-		modules.add(new Auto());
+		modules.add(new AntiBlatant());
+		modules.add(new AntiMisclick());
 		modules.add(new AutoArmor());
 		modules.add(new AutoClicker());
 		modules.add(new AutoTool());
+		modules.add(new CameraClip());
 		modules.add(new Chams());
 		modules.add(new ChestSteal());
 		modules.add(new ClickGui());
@@ -74,8 +81,10 @@ public class Client implements MCHook
 		modules.add(new FullBright());
 		modules.add(new Hitbox());
 		modules.add(new InvWalk());
+		modules.add(new ItemPhysics());
 		modules.add(new KeepSprint());
 		modules.add(new NameTags());
+		modules.add(new NoRender());
 		modules.add(new NoRotate());
 		modules.add(new Panic());
 		modules.add(new Parkour());
@@ -83,15 +92,16 @@ public class Client implements MCHook
 		modules.add(new Refill());
 		modules.add(new SafeWalk());
 		modules.add(new Scaffold());
-		modules.add(new SpeedMine());
 		modules.add(new Sprint());
 		modules.add(new ThrowPot());
 		modules.add(new ToggleSound());
-		modules.add(new Tracer());
 		modules.add(new Velocity());
 		modules.add(new WTap());
+		
+		fileManager.init();
 	}
 	public static void shutdown() {
+		fileManager.SETTING_DIR = new File(fileManager.FOLDER_DIR, "rice.txt");
 		fileManager.saveSettings();
 	}
 	public static Module isEnabled(String s)
@@ -110,6 +120,10 @@ public class Client implements MCHook
 	}
 	public static void onEvent(Event e) 
 	{
+		if(e instanceof EventChat) 
+		{
+			commandManager.handleChat((EventChat)e);
+		}
 		for(Module m: modules) 
 		{
 			m.onEvent2(e);
@@ -130,7 +144,7 @@ public class Client implements MCHook
         	{
         		if (m.getKey() == key) 
         		{
-        			if(Auto.modeValue.is("Ghost") && m.getCategory() == Category.BLATANT) 
+        			if(Client.isEnabled("AntiBlatant") != null && m.getCategory() == Category.BLATANT) 
         			{
         				continue;
         			}

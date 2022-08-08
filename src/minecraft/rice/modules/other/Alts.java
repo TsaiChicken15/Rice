@@ -12,8 +12,6 @@ public class Alts extends Module
 	public Alts() 
 	{
 		super("Alts", Keyboard.KEY_NONE, Category.OTHER, "");
-		this.addSettings(safetyValue);
 		this.toggled = true;
 	}
-	public static ModeSetting safetyValue = new ModeSetting("Safety","Ctrl + Shift","None","Ctrl","Shift","Ctrl + Shift");
 }

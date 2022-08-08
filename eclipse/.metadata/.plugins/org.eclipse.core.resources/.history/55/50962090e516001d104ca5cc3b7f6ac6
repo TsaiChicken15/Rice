@@ -1,0 +1,34 @@
+package rice.command;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import rice.command.commands.Toggle;
+import rice.events.listeners.EventChat;
+
+public class CommandManager {
+
+	public List<Command> commands = new ArrayList<Command>();
+	public String prefix = ".";
+	
+	public void setup() {
+		commands.add(new Toggle());
+	}
+	public void handleChat(EventChat chat) {
+		String message = chat.getMessage();
+		
+		if(!message.startsWith(prefix)) return;
+		
+		message = message.substring(prefix.length());
+		
+		if(message.split(" ").length > 0) {
+			String commandName = message.split(" ")[0];
+			for(Command c: commands) {
+				if(c.aliases.contains(commandName)) {
+					c.onCommand(Arrays.copyOfRange(message.split(" "), 1, message.split(" ").length), message);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,34 @@
+package rice.command.commands;
+
+import java.io.File;
+
+import org.lwjgl.input.Keyboard;
+
+import rice.Client;
+import rice.FileManager;
+import rice.command.Command;
+import rice.modules.Module;
+import rice.notification.Notification;
+import rice.notification.NotificationManager;
+import rice.notification.NotificationType;
+
+public class Config extends Command{
+
+	public Config() {
+		super("Config", "Saves configs", "config load|save <name>", "config");
+	}
+
+	@Override
+	public void onCommand(String[] args, String command) {
+		if(args.length == 2) {
+			if(args[0].equalsIgnoreCase("save")) {
+				Client.fileManager.SETTING_DIR = new File(args[1] + ".txt");
+				Client.fileManager.saveSettings();
+			}
+			if(args[0].equalsIgnoreCase("load")) {
+				Client.fileManager.SETTING_DIR = new File(args[1] + ".txt");
+				Client.fileManager.loadSettings();
+			}
+		}
+	}
+}

@@ -32,7 +32,7 @@ public class Panic extends Module
 		}
 		if(a > 0)
 		{
-			NotificationManager.show(new Notification(NotificationType.INFO, "¡±l" + a + " module(s) ¡±ldisabled", 2));
+			NotificationManager.show(new Notification(NotificationType.INFO, "¡±l[Panic]", a + " module(s) disabled", 2));
 			ToggleSound.playButtonPressSound();
 		}
 	}

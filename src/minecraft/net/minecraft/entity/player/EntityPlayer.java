@@ -1,12 +1,14 @@
 package net.minecraft.entity.player;
 
-import com.google.common.base.Charsets;
-import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+
+import com.google.common.base.Charsets;
+import com.google.common.collect.Lists;
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockDirectional;
@@ -75,8 +77,6 @@ import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.LockCode;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
-import rice.Client;
-import rice.events.listeners.EventYawHead;
 
 public abstract class EntityPlayer extends EntityLivingBase
 {
@@ -590,11 +590,7 @@ public abstract class EntityPlayer extends EntityLivingBase
     {
         super.updateEntityActionState();
         this.updateArmSwingProgress();
-        
-        EventYawHead e = new EventYawHead(this.rotationYaw);
-        Client.onEvent(e);
-        
-        this.rotationYawHead = e.yaw;
+        this.rotationYawHead = this.rotationYaw;
     }
 
     /**

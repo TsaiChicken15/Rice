@@ -1,0 +1,47 @@
+package client.main.modules.render;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import org.lwjgl.input.Keyboard;
+
+import client.main.events.Event;
+import client.main.events.listeners.EventHurtCam;
+import client.main.events.listeners.EventRenderGUI;
+import client.main.events.listeners.EventUpdate;
+import client.main.modules.Module;
+import client.main.settings.BooleanSetting;
+import client.main.settings.NumberSetting;
+import client.main.utils.MCHook;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+
+public class NoRender extends Module implements MCHook
+{
+	public NoRender() {
+		super("NoRender", Keyboard.KEY_NONE, Category.RENDER, "");
+		this.toggled = true;
+		this.addSettings(achieveValue,blindValue,hurtValue,nauseaValue,pumpkinValue,heightValue);
+	}
+	public static BooleanSetting achieveValue = new BooleanSetting("NoAchievement",true);
+	public static BooleanSetting blindValue = new BooleanSetting("NoBlindness",true);
+	public static BooleanSetting hurtValue = new BooleanSetting("NoHurtCam",true);
+	public static BooleanSetting nauseaValue = new BooleanSetting("NoNausea",true);
+	public static BooleanSetting pumpkinValue = new BooleanSetting("NoPumpkin",true);
+	public static NumberSetting heightValue = new NumberSetting("FireHeight", -0.3D, -1.0D, 0.0D, 0.05D);
+	public void onEvent(Event e) {
+		if(e instanceof EventUpdate) {
+			if(achieveValue.get()) {
+				mc.guiAchievement.clearAchievements();
+			}
+		}
+		if(e instanceof EventHurtCam) {
+			if(hurtValue.get()) {
+				e.cancelEvent();
+			}
+		}
+	}
+}

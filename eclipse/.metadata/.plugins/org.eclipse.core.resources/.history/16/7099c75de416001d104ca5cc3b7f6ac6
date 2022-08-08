@@ -1,0 +1,15 @@
+package rice.command;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import rice.command.commands.Toggle;
+
+public class CommandManager {
+
+	public List<Command> commands = new ArrayList<Command>();
+	
+	public void setup() {
+		commands.add(new Toggle());
+	}
+}

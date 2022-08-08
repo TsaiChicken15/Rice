@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="org.eclipse.jdt.ui.lastextjar" value="D:\Latest Clients\Rice\jars\libraries\com\mojang\realms\1.6.1"/>
+	<item key="filters_last_used" value="filter_imports;"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="1"/>
@@ -59,6 +60,9 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="D:\Latest Clients\Rice Client\Rice b4.1.jar"/>
+			<item value="D:\Latest Clients\Rice\eclipse\Rice b4.jar"/>
+			<item value="D:\Latest Clients\Rice Client\Rice b3.jar"/>
 			<item value="D:\Latest Clients\Rice Client\Rice b2.2.jar"/>
 			<item value="D:\Latest Clients\Rice Client\Rice b2.1.jar"/>
 			<item value="D:\Latest Clients\Rice Client\Rice b2.jar"/>
@@ -153,5 +157,7 @@
 				<item key="antpath" value="D:\Latest Clients\Rice\eclipse\Client\javadoc.xml"/>
 			</section>
 		</section>
+	</section>
+	<section name="BreadcrumbItemDropDown">
 	</section>
 </section>

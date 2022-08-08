@@ -16,6 +16,8 @@ import rice.events.listeners.EventUpdate;
 import rice.modules.Module;
 import rice.settings.BooleanSetting;
 import rice.settings.ModeSetting;
+import rice.settings.NumberSetting;
+import rice.ui.clickgui.simple.button.Button;
 import rice.utils.ColorUtil;
 
 public class ActiveMods extends Module
@@ -23,20 +25,24 @@ public class ActiveMods extends Module
 	public ActiveMods() 
 	{
 		super("ActiveMods", Keyboard.KEY_NONE, Category.OTHER, "Shows a list of all currently enabled modules");
-		this.addSettings(colorValue, backGroundValue, antiAchievementValue);
+		this.addSettings(/*colorValue,*/ backGroundValue, colorValue, colorRedValue, colorGreenValue, colorBlueValue, colorAlphaValue);
 		this.toggled = true;
 	}
-	public static ModeSetting colorValue = new ModeSetting("Color","White","White","Light Gray","Gray","Dark Gray","Black","Red","Pink","Orange","Yellow","Green","Magenta","Cyan","Blue","Rainbow");
+	//public static ModeSetting colorValue = new ModeSetting("Color","White","White","Light Gray","Gray","Dark Gray","Black","Red","Pink","Orange","Yellow","Green","Magenta","Cyan","Blue","Rainbow");
 	private BooleanSetting backGroundValue =  new BooleanSetting("Background", true);
-	private BooleanSetting antiAchievementValue =  new BooleanSetting("AntiAchievement", false);
+	public static ModeSetting colorValue = new ModeSetting("Color","Custom","Custom","Rainbow");
+	public static NumberSetting colorRedValue = new NumberSetting("Red", 255, 0, 255, 1);
+	public static NumberSetting colorGreenValue = new NumberSetting("Green", 255, 0, 255, 1);
+	public static NumberSetting colorBlueValue = new NumberSetting("Blue", 255, 0, 255, 1);
+	public static NumberSetting colorAlphaValue = new NumberSetting("Alpha", 200, 0, 255, 1);
 	private ArrayList<Module> toggledMods = new ArrayList<Module>();
 	private ArrayList<Module> modsList = new ArrayList<Module>();
-	public int color = 0;
+	public int color = -1;
 	public void onEvent(Event e) 
 	{
 		if(e instanceof EventUpdate) 
 		{
-			if(colorValue.is("White"))
+			/*if(colorValue.is("White"))
 			{
 				color = Color.WHITE.getRGB();
 			}
@@ -87,6 +93,10 @@ public class ActiveMods extends Module
 			else if(colorValue.is("Blue"))
 			{
 				color = Color.BLUE.getRGB();
+			}*/
+			if(colorValue.is("Custom"))
+			{
+				color = new Color((int)colorRedValue.get(), (int)colorGreenValue.get(), (int)colorBlueValue.get(), (int)colorAlphaValue.get()).getRGB();
 			}
 			else if(colorValue.is("Rainbow"))
 			{
@@ -105,14 +115,6 @@ public class ActiveMods extends Module
     		modsList.sort(Comparator.comparingInt(m -> mc.fontRendererObj.getStringWidth(String.valueOf(((Module)m).name + (((Module)m).additionalInfo != "" ? " " + ((Module)m).additionalInfo : "")))).reversed());
 	    	int count = 0;
 	    	int antiAchievementOffset = 0;
-	    	if(antiAchievementValue.get()) 
-	    	{
-	    		antiAchievementOffset = fr.FONT_HEIGHT * 4;
-	    	}
-	    	else 
-	    	{
-	    		antiAchievementOffset = 0;
-	    	}
 	    	toggledMods = new ArrayList<Module>();
 	    	for(Module m : modsList)
 	    	{

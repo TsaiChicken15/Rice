@@ -21,7 +21,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MathHelper;
@@ -30,8 +29,8 @@ import net.minecraft.world.storage.MapData;
 import optifine.Config;
 import optifine.DynamicLights;
 import optifine.Reflector;
-import rice.Client;
 import rice.modules.render.Animations;
+import rice.modules.render.NoRender;
 import shadersmod.client.Shaders;
 
 public class ItemRenderer
@@ -521,7 +520,7 @@ public class ItemRenderer
             float var13 = 0.0F - var4 / 2.0F;
             float var14 = var13 + var4;
             float var15 = -0.5F;
-            GlStateManager.translate((float)(-(var5 * 2 - 1)) * 0.24F, -0.3F, 0.0F);
+            GlStateManager.translate((-(var5 * 2 - 1) * 0.24F), NoRender.heightValue.get(), 0.0D);
             GlStateManager.rotate((float)(var5 * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
             var3.startDrawingQuads();
             var3.addVertexWithUV((double)var11, (double)var13, (double)var15, (double)var8, (double)var10);

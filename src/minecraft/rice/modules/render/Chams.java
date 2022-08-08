@@ -22,7 +22,7 @@ public class Chams extends Module
 	}
 	public static BooleanSetting itemValue = new BooleanSetting("Item", false);
 	public static BooleanSetting invisibleValue = new BooleanSetting("Invisible", true);
-	public static ModeSetting playerModeValue = new ModeSetting("Color","Default","Default","Color","Rainbow");
+	public static ModeSetting playerModeValue = new ModeSetting("Color","Default","Default","Custom","Rainbow");
 	public static NumberSetting colorRedValue = new NumberSetting("Red", 255, 0, 255, 1);
 	public static NumberSetting colorGreenValue = new NumberSetting("Green", 255, 0, 255, 1);
 	public static NumberSetting colorBlueValue = new NumberSetting("Blue", 255, 0, 255, 1);

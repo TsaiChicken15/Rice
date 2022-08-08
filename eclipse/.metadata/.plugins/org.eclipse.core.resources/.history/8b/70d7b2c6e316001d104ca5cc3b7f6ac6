@@ -1,0 +1,5 @@
+package rice.command.commands;
+
+public class Toggle {
+
+}

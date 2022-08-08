@@ -1,14 +1,15 @@
 package net.minecraft.client.gui;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Random;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -46,6 +47,7 @@ import net.minecraft.world.border.WorldBorder;
 import optifine.Config;
 import optifine.CustomColors;
 import rice.Client;
+import rice.modules.render.NoRender;
 
 public class GuiIngame extends Gui
 {
@@ -950,6 +952,7 @@ public class GuiIngame extends Gui
 
     private void func_180476_e(ScaledResolution p_180476_1_)
     {
+    	if(NoRender.pumpkinValue.get()) return;
         GlStateManager.disableDepth();
         GlStateManager.depthMask(false);
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);

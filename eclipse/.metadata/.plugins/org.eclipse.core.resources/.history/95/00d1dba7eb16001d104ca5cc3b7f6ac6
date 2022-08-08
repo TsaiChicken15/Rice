@@ -1,0 +1,408 @@
+package client.main.modules.render;
+
+import java.awt.Color;
+import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import client.main.events.Event;
+import client.main.events.listeners.EventRender3D;
+import client.main.events.listeners.EventRenderPlayer;
+import client.main.events.listeners.EventUpdateModel;
+import client.main.modules.Module;
+import client.main.modules.other.ColorManager;
+import client.main.modules.other.Teams;
+import client.main.settings.BooleanSetting;
+import client.main.utils.MathUtil;
+import client.main.utils.RenderUtil;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.model.ModelPlayer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import optifine.Config;
+
+public class ESP extends Module
+{
+	public ESP() {
+		super("ESP", Keyboard.KEY_NONE, Category.RENDER, "Renders a box around players");
+		this.addSettings(boxValue,chamsValue,lineValue,skeletonValue,invisibleValue);
+	}
+	private final Map playerRotationMap = new WeakHashMap();
+	public static BooleanSetting boxValue = new BooleanSetting("Box",true);
+	public static BooleanSetting chamsValue = new BooleanSetting("Chams",true);
+	public static BooleanSetting lineValue = new BooleanSetting("Line",true);
+	public static BooleanSetting skeletonValue = new BooleanSetting("Skeleton",true);
+	public static BooleanSetting invisibleValue  = new BooleanSetting("Invisible",true);
+	public void onEvent(Event e) {	
+		if (e instanceof EventRenderPlayer) {
+			if(boxValue.get()) {
+				this.drawPlayerFrame();
+			}
+		}
+		if(e instanceof EventRender3D) {
+			if(lineValue.get()) {
+				for (Object o : this.mc.theWorld.loadedEntityList) {
+		            double[] arrd;
+		            Entity entity = (Entity)o;
+		            if (!entity.isEntityAlive() || !(entity instanceof EntityPlayer) || entity == this.mc.thePlayer) continue;
+					if(!invisibleValue.get() && (entity.isInvisible() || entity.isInvisibleToPlayer(mc.thePlayer))){
+						continue;
+					}
+		            double posX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)((EventRender3D)e).getPartialTicks() - RenderManager.renderPosX;
+		            double posY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)((EventRender3D)e).getPartialTicks() - RenderManager.renderPosY;
+		            double posZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)((EventRender3D)e).getPartialTicks() - RenderManager.renderPosZ;
+		            boolean old = this.mc.gameSettings.viewBobbing;
+		            RenderUtil.startDrawing();
+		            this.mc.gameSettings.viewBobbing = false;
+		            this.mc.entityRenderer.setupCameraTransform(this.mc.timer.renderPartialTicks, 2);
+		            this.mc.gameSettings.viewBobbing = old;
+		            float color = (float)Math.round(255.0 - this.mc.thePlayer.getDistanceSqToEntity(entity) * 255.0 / MathUtil.square((double)this.mc.gameSettings.renderDistanceChunks * 2.5)) / 255.0f;
+	                double[] arrd3 = new double[3];
+	                arrd3[0] = color;
+	                arrd3[1] = 1.0f - color;
+	                arrd = arrd3;
+	                arrd3[2] = 0.0;
+		            this.drawLine(entity, arrd, posX, posY, posZ);
+		            RenderUtil.stopDrawing();
+		        }
+			}
+			if(skeletonValue.get()) {
+				EventRender3D event = ((EventRender3D)e);
+		        this.setupRender(true);
+		        GL11.glEnable(2903);
+		        GL11.glDisable(2848);
+		
+		        this.playerRotationMap.keySet().removeIf(var0 -> contain((EntityPlayer) var0));
+		
+		        Map playerRotationMap = this.playerRotationMap;
+		        List worldPlayers = mc.theWorld.playerEntities;
+		
+		        Object[] players = playerRotationMap.keySet().toArray();
+		        int playersLength = players.length;
+		
+		        for (int i = 0; i < playersLength; ++i) {
+		            EntityPlayer player = (EntityPlayer) players[i];
+		            float[][] entPos = (float[][]) playerRotationMap.get(player);
+		
+		            if (entPos == null || player.getEntityId() == -1488 || !player.isEntityAlive() || !RenderUtil.isInViewFrustrum(player) ||
+		                    player.isDead || (player == mc.thePlayer && mc.gameSettings.thirdPersonView == 0) || player.isPlayerSleeping())
+		                continue;
+		            
+		            if(!invisibleValue.get() && ((player.isInvisible() || player.isInvisibleToPlayer(mc.thePlayer) || player == mc.thePlayer))){
+						continue;
+					}
+		
+		            GL11.glPushMatrix();
+		            float[][] modelRotations = (float[][]) playerRotationMap.get(player);
+		            GL11.glLineWidth(1.0f);
+		            GL11.glColor4f((float)ColorManager.colorRedValue.get() / 255.0f, (float)ColorManager.colorGreenValue.get() / 255.0f, (float)ColorManager.colorBlueValue.get() / 255.0f, 1.0f);
+		
+		            double x = interpolate(player.posX, player.lastTickPosX, event.getPartialTicks()) - mc.getRenderManager().renderPosX;
+		            double y = interpolate(player.posY, player.lastTickPosY, event.getPartialTicks()) - mc.getRenderManager().renderPosY;
+		            double z = interpolate(player.posZ, player.lastTickPosZ, event.getPartialTicks()) - mc.getRenderManager().renderPosZ;
+		            
+		            /*double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double)((EventRender3D)e).getPartialTicks() - RenderManager.renderPosX;
+		            double y = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double)((EventRender3D)e).getPartialTicks() - RenderManager.renderPosY;
+		            double z = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double)((EventRender3D)e).getPartialTicks() - RenderManager.renderPosZ;*/
+		
+		            GL11.glTranslated(x, y, z);
+		
+		            float bodyYawOffset = player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * mc.timer.renderPartialTicks;
+		
+		            GL11.glRotatef((-bodyYawOffset), 0.0f, 1.0f, 0.0f);
+		            GL11.glTranslated(0.0, 0.0, (player.isSneaking() ? -0.235 : 0.0));
+		
+		            float legHeight = player.isSneaking() ? 0.6f : 0.75f;
+		            float rad = 57.29578f;
+		
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(-0.125, legHeight, 0.0);
+		
+		            if (modelRotations[3][0] != 0.0f) {
+		                GL11.glRotatef((modelRotations[3][0] * 57.29578f), 1.0f, 0.0f, 0.0f);
+		            }
+		
+		            if (modelRotations[3][1] != 0.0f) {
+		                GL11.glRotatef((modelRotations[3][1] * 57.29578f), 0.0f, 1.0f, 0.0f);
+		            }
+		
+		            if (modelRotations[3][2] != 0.0f) {
+		                GL11.glRotatef((modelRotations[3][2] * 57.29578f), 0.0f, 0.0f, 1.0f);
+		            }
+		
+		            GL11.glBegin(3);
+		            GL11.glVertex3d(0.0, 0.0, 0.0);
+		            GL11.glVertex3d(0.0, (-legHeight), 0.0);
+		            GL11.glEnd();
+		            GL11.glPopMatrix();
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(0.125, legHeight, 0.0);
+		
+		            if (modelRotations[4][0] != 0.0f) {
+		                GL11.glRotatef((modelRotations[4][0] * 57.29578f), 1.0f, 0.0f, 0.0f);
+		            }
+		
+		            if (modelRotations[4][1] != 0.0f) {
+		                GL11.glRotatef((modelRotations[4][1] * 57.29578f), 0.0f, 1.0f, 0.0f);
+		            }
+		
+		            if (modelRotations[4][2] != 0.0f) {
+		                GL11.glRotatef((modelRotations[4][2] * 57.29578f), 0.0f, 0.0f, 1.0f);
+		            }
+		
+		            GL11.glBegin(3);
+		            GL11.glVertex3d(0.0, 0.0, 0.0);
+		            GL11.glVertex3d(0.0, (-legHeight), 0.0);
+		            GL11.glEnd();
+		            GL11.glPopMatrix();
+		            GL11.glTranslated(0.0, 0.0, (player.isSneaking() ? 0.25 : 0.0));
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(0.0, (player.isSneaking() ? -0.05 : 0.0), (player.isSneaking() ? -0.01725 : 0.0));
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(-0.375, (legHeight + 0.55), 0.0);
+		
+		            if (modelRotations[1][0] != 0.0f) {
+		                GL11.glRotatef((modelRotations[1][0] * 57.29578f), 1.0f, 0.0f, 0.0f);
+		            }
+		
+		            if (modelRotations[1][1] != 0.0f) {
+		                GL11.glRotatef((modelRotations[1][1] * 57.29578f), 0.0f, 1.0f, 0.0f);
+		            }
+		
+		            if (modelRotations[1][2] != 0.0f) {
+		                GL11.glRotatef((-modelRotations[1][2] * 57.29578f), 0.0f, 0.0f, 1.0f);
+		            }
+		
+		            GL11.glBegin(3);
+		            GL11.glVertex3d(0.0, 0.0, 0.0);
+		            GL11.glVertex3d(0.0, -0.5, 0.0);
+		            GL11.glEnd();
+		            GL11.glPopMatrix();
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(0.375, (legHeight + 0.55), 0.0);
+		
+		            if (modelRotations[2][0] != 0.0f) {
+		                GL11.glRotatef((modelRotations[2][0] * 57.29578f), 1.0f, 0.0f, 0.0f);
+		            }
+		
+		            if (modelRotations[2][1] != 0.0f) {
+		                GL11.glRotatef((modelRotations[2][1] * 57.29578f), 0.0f, 1.0f, 0.0f);
+		            }
+		
+		            if (modelRotations[2][2] != 0.0f) {
+		                GL11.glRotatef((-modelRotations[2][2] * 57.29578f), 0.0f, 0.0f, 1.0f);
+		            }
+		
+		            GL11.glBegin(3);
+		            GL11.glVertex3d(0.0, 0.0, 0.0);
+		            GL11.glVertex3d(0.0, -0.5, 0.0);
+		            GL11.glEnd();
+		            GL11.glPopMatrix();
+		            GL11.glRotatef((bodyYawOffset - player.rotationYawHead), 0.0f, 1.0f, 0.0f);
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(0.0, (legHeight + 0.55), 0.0);
+		
+		            if (modelRotations[0][0] != 0.0f) {
+		                GL11.glRotatef((modelRotations[0][0] * 57.29578f), 1.0f, 0.0f, 0.0f);
+		            }
+		
+		            GL11.glBegin(3);
+		            GL11.glVertex3d(0.0, 0.0, 0.0);
+		            GL11.glVertex3d(0.0, 0.3, 0.0);
+		            GL11.glEnd();
+		            GL11.glPopMatrix();
+		            GL11.glPopMatrix();
+		            GL11.glRotatef((player.isSneaking() ? 25.0f : 0.0f), 1.0f, 0.0f, 0.0f);
+		            GL11.glTranslated(0.0, (player.isSneaking() ? -0.16175 : 0.0), (player.isSneaking() ? -0.48025 : 0.0));
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(0.0, legHeight, 0.0);
+		            GL11.glBegin(3);
+		            GL11.glVertex3d(-0.125, 0.0, 0.0);
+		            GL11.glVertex3d(0.125, 0.0, 0.0);
+		            GL11.glEnd();
+		            GL11.glPopMatrix();
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(0.0, legHeight, 0.0);
+		            GL11.glBegin(3);
+		            GL11.glVertex3d(0.0, 0.0, 0.0);
+		            GL11.glVertex3d(0.0, 0.55, 0.0);
+		            GL11.glEnd();
+		            GL11.glPopMatrix();
+		            GL11.glPushMatrix();
+		            GL11.glTranslated(0.0, (legHeight + 0.55), 0.0);
+		            GL11.glBegin(3);
+		            GL11.glVertex3d(-0.375, 0.0, 0.0);
+		            GL11.glVertex3d(0.375, 0.0, 0.0);
+		            GL11.glEnd();
+		            GL11.glPopMatrix();
+		            GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		            GL11.glPopMatrix();
+		        }
+		        this.setupRender(false);
+			}
+		}
+		if(e instanceof EventUpdateModel) {
+			if(skeletonValue.get()) {
+	    		EventUpdateModel event = ((EventUpdateModel)e);
+	    		ModelPlayer model = event.getModel();
+	            playerRotationMap.put(event.getPlayer(), new float[][]{{model.bipedHead.rotateAngleX, model.bipedHead.rotateAngleY, model.bipedHead.rotateAngleZ}, {model.bipedRightArm.rotateAngleX, model.bipedRightArm.rotateAngleY, model.bipedRightArm.rotateAngleZ}, {model.bipedLeftArm.rotateAngleX, model.bipedLeftArm.rotateAngleY, model.bipedLeftArm.rotateAngleZ}, {model.bipedRightLeg.rotateAngleX, model.bipedRightLeg.rotateAngleY, model.bipedRightLeg.rotateAngleZ}, {model.bipedLeftLeg.rotateAngleX, model.bipedLeftLeg.rotateAngleY, model.bipedLeftLeg.rotateAngleZ}});
+			}
+    	}
+		if (e instanceof EventRenderPlayer) 
+		{
+			if(chamsValue.get())
+			{
+				if (e.isPRE()) 
+				{
+	                GL11.glEnable(32823);
+	                GL11.glPolygonOffset(1.0f, -1100000.0f);
+				}
+				if (e.isPOST()) 
+				{
+	                GL11.glDisable(32823);
+	                GL11.glPolygonOffset(1.0f, 1100000.0f);
+				}
+			}
+		}
+	}
+	
+	public static void setColor() 
+	{
+		if(ColorManager.rainbowValue.get())
+		{
+			RenderUtil.glColor(RenderUtil.getRainbow(4, 0.8f, 1));
+		}
+		else
+		{
+			GL11.glColor4f((float)(ColorManager.colorRedValue.get() / 255f), (float)(ColorManager.colorGreenValue.get() / 255f), (float)(ColorManager.colorBlueValue.get() / 255f), (float)(ColorManager.colorAlphaValue.get() / 255f));
+		}
+	}
+	
+	public static void drawPlayerFrame() 
+	{
+		for (Object en : mc.theWorld.playerEntities) {
+			EntityLivingBase entity = ((EntityLivingBase)en);
+			if (!ESP.isValid(entity)) continue;
+			if(!invisibleValue.get() && (entity.isInvisible() || entity.isInvisibleToPlayer(mc.thePlayer))) continue;
+			if(mc.currentScreen instanceof GuiContainer) continue;
+	        GL11.glPushMatrix();
+	        GL11.glEnable(3042);
+	        GL11.glDisable(2929);
+	        GL11.glNormal3f(0.0f, 1.0f, 0.0f);
+	        GlStateManager.enableBlend();
+	        GL11.glBlendFunc(770, 771);
+	        GL11.glDisable(3553);
+	        float partialTicks = mc.timer.renderPartialTicks;
+	        double x2 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double) partialTicks - mc.getRenderManager().renderPosX;
+	        double y2 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double) partialTicks - mc.getRenderManager().renderPosY;
+	        double z2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double) partialTicks - mc.getRenderManager().renderPosZ;
+	        float DISTANCE = mc.thePlayer.getDistanceToEntity(entity);
+	        float DISTANCE_SCALE = Math.min(DISTANCE * 0.15f, 0.15f);
+	        float SCALE = 0.035f;
+	        float xMid = (float) x2;
+	        float yMid = (float) y2 + entity.height + 0.5f - (entity.isChild() ? entity.height / 2.0f : 0.0f);
+	        float zMid = (float) z2;
+	        GlStateManager.translate((float) x2, (float) y2 + entity.height + 0.5f - (entity.isChild() ? entity.height / 2.0f : 0.0f), (float) z2);
+	        GL11.glNormal3f(0.0f, 1.0f, 0.0f);
+	        mc.getRenderManager();
+	        GlStateManager.rotate(-mc.getRenderManager().playerViewY, 0.0f, 1.0f, 0.0f);
+	        GL11.glScalef(-SCALE, -SCALE, -(SCALE /= 2.0f));
+	        Tessellator tesselator = Tessellator.getInstance();
+	        WorldRenderer worldRenderer = tesselator.getWorldRenderer();
+	        float HEALTH = entity.getHealth();
+	        int COLOR = -1;
+	        COLOR = (double) HEALTH > 20.0 ? -65292 : ((double) HEALTH >= 10.0 ? -16711936 : ((double) HEALTH >= 5.0 ? -23296 : -65536));
+	        Color gray = new Color(0, 0, 0);
+	        double thickness = 1 + DISTANCE * 0.01f;
+	        double xLeft = -15.0;
+	        double xRight = 15.0;
+	        double yUp = 10.0;
+	        double yDown = 70.0;
+	        double size = 10.0;
+	        Color color = new Color(255, 255, 255);
+	        if (entity.hurtTime > 0) {
+	            color = new Color(255, 0, 0);
+	        } else if (Teams.isOnSameTeam(entity)) {
+	            color = new Color(0, 255, 0);
+	        } else if (entity.isInvisible()) {
+	            color = new Color(255, 255, 0);
+	        }
+	        RenderUtil.drawBorderedRect((float) xLeft, (float) yUp, (float) xRight, (float) yDown, (float) thickness + 0.2f, Color.BLACK.getRGB(), 0);
+	        RenderUtil.drawBorderedRect((float) xLeft, (float) yUp, (float) xRight, (float) yDown, (float) thickness, color.getRGB(), 0);
+	        RenderUtil.drawBorderedRect((float) xLeft - 2.0f - DISTANCE * 0.1f, (float) yDown - (float) (yDown - yUp), (float) xLeft - 2.0f, (float) yDown, 0.15f, new Color(100, 100, 100).getRGB(), new Color(100, 100, 100).getRGB());
+	        /*Color c1 = new Color(Color.HSBtoRGB(mc.thePlayer.ticksExisted / 25f, 0.7f, 1));
+	        Color c2 = new Color(Color.HSBtoRGB(mc.thePlayer.ticksExisted / 50f, 0.7f, 1));*/
+	        RenderUtil.drawRect((float) xLeft - 2.0f - DISTANCE * (Config.zoomMode ? 0.06f : 0.18f), (float) yDown - (float) (yDown - yUp) * Math.min(1.0f, entity.getHealth() / 20.0f), (float) xLeft - 2.0f, (float) yDown, COLOR);
+	        GL11.glEnable(3553);
+	        GL11.glEnable(2929);
+	        GlStateManager.disableBlend();
+	        GL11.glDisable(3042);
+	        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	        GL11.glNormal3f(1.0f, 1.0f, 1.0f);
+	        GL11.glPopMatrix();
+		}
+    }
+	
+	private static boolean isValid(EntityLivingBase entity) {
+        if (entity instanceof EntityPlayer && entity.getHealth() >= 0.0f && ((entity == mc.thePlayer && mc.gameSettings.thirdPersonView != 0) || entity != mc.thePlayer)) {
+            return true;
+        }
+        return false;
+    }
+	
+	private void drawLine(Entity entity, double[] color, double x, double y, double z) {
+        float distance = mc.thePlayer.getDistanceToEntity(entity);
+        float xD = distance / 48.0f;
+        if (xD >= 1.0f) {
+            xD = 1.0f;
+        }
+        boolean entityesp = false;
+        GL11.glEnable((int)2848);
+        if (color.length >= 4) {
+            if (color[3] <= 0.1) {
+                return;
+            }
+            GL11.glColor4d((double)color[0], (double)color[1], (double)color[2], (double)color[3]);
+        } else {
+            GL11.glColor3d((double)color[0], (double)color[1], (double)color[2]);
+        }
+        GL11.glLineWidth((float)2.0f);
+        GL11.glBegin((int)1);
+        GL11.glVertex3d((double)0.0, (double)mc.thePlayer.getEyeHeight(), (double)0.0);
+        GL11.glVertex3d((double)x, (double)y, (double)z);
+        GL11.glEnd();
+        GL11.glDisable((int)2848);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+	
+	private void setupRender(boolean start) {
+
+        if (start) {
+            RenderUtil.startSmooth();
+            GL11.glDisable(2929);
+            GL11.glDisable(3553);
+        } else {
+            GL11.glEnable(3553);
+            GL11.glEnable(2929);
+            RenderUtil.endSmooth();
+        }
+        GL11.glDepthMask((!start ? 1 : 0) != 0);
+    }
+
+    private boolean contain(EntityPlayer var0) {
+        return !mc.theWorld.playerEntities.contains(var0);
+    }
+
+    public static double interpolate(double current, double old, double scale) {
+        return old + (current - old) * scale;
+    }
+}

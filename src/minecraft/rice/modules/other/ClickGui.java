@@ -12,6 +12,7 @@ import rice.events.listeners.EventUpdate;
 import rice.modules.Module;
 import rice.settings.BooleanSetting;
 import rice.settings.ModeSetting;
+import rice.settings.NumberSetting;
 import rice.ui.clickgui.simple.button.Button;
 import rice.utils.ColorUtil;
 import rice.utils.MSTimer;
@@ -21,22 +22,25 @@ public class ClickGui extends Module
 	public ClickGui() 
 	{
 		super("ClickGui", Keyboard.KEY_RSHIFT, Category.OTHER, "");
-		this.addSettings(colorValue,safetyValue);
+		this.addSettings(colorValue, colorRedValue, colorGreenValue, colorBlueValue, colorAlphaValue);
 	}
-	public static ModeSetting colorValue = new ModeSetting("Color","White","White","Light Gray","Gray","Dark Gray","Black","Red","Pink","Orange","Yellow","Green","Magenta","Cyan","Blue","Rainbow");
-	private BooleanSetting safetyValue = new BooleanSetting("Safety", true);
+	public static ModeSetting colorValue = new ModeSetting("Color","Custom","Custom","Rainbow");
+	public static NumberSetting colorRedValue = new NumberSetting("Red", 255, 0, 255, 1);
+	public static NumberSetting colorGreenValue = new NumberSetting("Green", 255, 0, 255, 1);
+	public static NumberSetting colorBlueValue = new NumberSetting("Blue", 255, 0, 255, 1);
+	public static NumberSetting colorAlphaValue = new NumberSetting("Alpha", 200, 0, 255, 1);
 	private MSTimer timer = new MSTimer();
 	public void onEnable() 
 	{
 		timer.reset();
 		if(mc.currentScreen == null) 
 		{
-			if(safetyValue.get() && GuiScreen.isCtrlKeyDown())
+			if(Client.isEnabled("AntiMisclick") != null && GuiScreen.isCtrlKeyDown())
 			{
 				mc.displayGuiScreen(Client.ClickGui);
 				ToggleSound.playButtonPressSound();
 			}
-			else if(!safetyValue.get())
+			else if(Client.isEnabled("AntiMisclick") == null)
 			{
 				mc.displayGuiScreen(Client.ClickGui);
 				ToggleSound.playButtonPressSound();
@@ -52,61 +56,13 @@ public class ClickGui extends Module
 		if(e instanceof EventUpdate) 
 		{
 			FontRenderer fr = mc.fontRendererObj;
-			if(colorValue.is("White"))
-			{
-				Button.color = Color.WHITE.getRGB();
-			}
-			else if(colorValue.is("Light Gray"))
-			{
-				Button.color = Color.LIGHT_GRAY.getRGB();
-			}
-			else if(colorValue.is("Gray"))
-			{
-				Button.color = Color.GRAY.getRGB();
-			}
-			else if(colorValue.is("Dark Gray"))
-			{
-				Button.color = Color.DARK_GRAY.getRGB();
-			}
-			else if(colorValue.is("Black"))
-			{
-				Button.color = Color.BLACK.getRGB();
-			}
-			else if(colorValue.is("Red"))
-			{
-				Button.color = Color.RED.getRGB();
-			}
-			else if(colorValue.is("Pink"))
-			{
-				Button.color = Color.PINK.getRGB();
-			}
-			else if(colorValue.is("Orange"))
-			{
-				Button.color = Color.ORANGE.getRGB();
-			}
-			else if(colorValue.is("Yellow"))
-			{
-				Button.color = Color.YELLOW.getRGB();
-			}
-			else if(colorValue.is("Green"))
-			{
-				Button.color = Color.GREEN.getRGB();
-			}
-			else if(colorValue.is("Magenta"))
-			{
-				Button.color = Color.MAGENTA.getRGB();
-			}
-			else if(colorValue.is("Cyan"))
-			{
-				Button.color = Color.CYAN.getRGB();
-			}
-			else if(colorValue.is("Blue"))
-			{
-				Button.color = Color.BLUE.getRGB();
-			}
-			else if(colorValue.is("Rainbow"))
+			if(colorValue.is("Rainbow"))
 			{
 				Button.color = ColorUtil.getRainbow(4, 0.8f, 1);
+			}
+			else if(colorValue.is("Custom"))
+			{
+				Button.color = new Color((int)colorRedValue.get(), (int)colorGreenValue.get(), (int)colorBlueValue.get(), (int)colorAlphaValue.get()).getRGB();
 			}
 		}
 	}

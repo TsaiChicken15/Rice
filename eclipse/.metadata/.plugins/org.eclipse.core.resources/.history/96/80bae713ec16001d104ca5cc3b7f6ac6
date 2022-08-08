@@ -1,0 +1,13 @@
+package client.main.modules.render;
+
+import org.lwjgl.input.Keyboard;
+
+import client.main.modules.Module;
+import client.main.utils.MCHook;
+
+public class CameraClip extends Module implements MCHook
+{
+	public CameraClip() {
+		super("CameraClip", Keyboard.KEY_NONE, Category.RENDER, "");
+	}
+}

@@ -1,0 +1,12 @@
+package rice.command.commands;
+
+import rice.command.Command;
+
+public class Toggle extends Command{
+
+	public Toggle() {
+		super("Toggle", "Toggle a module by name", "toggle <name>", "t", "toggle");
+	}
+
+	
+}

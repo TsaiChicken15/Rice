@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="rice.ui.clickgui.simple"/>
+		<item key="selection" value="send"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="true"/>
-		<item key="wholeword" value="true"/>
+		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="send"/>
+			<item value="sendmessage"/>
 			<item value="rice.ui.clickgui"/>
 			<item value="new ScaledResolution(mc);"/>
 			<item value="isDrawing"/>
@@ -21,8 +23,6 @@
 			<item value="var12.getStringWidth(&quot;§l&quot;+ p_147906_2_) / 2"/>
 			<item value="var12.getStringWidth(&quot;§l &quot;+ p_147906_2_) / 2"/>
 			<item value="getPlayerRelativeBlockHardness"/>
-			<item value="modifyBreakSpeed"/>
-			<item value="leftClickCounter"/>
 		</list>
 		<list key="replacehistory">
 			<item value="rice.ui.clickgui.simple"/>

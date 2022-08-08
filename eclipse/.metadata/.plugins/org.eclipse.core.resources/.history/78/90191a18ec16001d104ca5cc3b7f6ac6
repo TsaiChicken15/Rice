@@ -1,0 +1,12 @@
+package client.main.modules.render;
+
+import org.lwjgl.input.Keyboard;
+import client.main.modules.Module;
+import client.main.modules.Module.Category;
+
+public class ItemPhysics extends Module
+{
+	public ItemPhysics() {
+		super("ItemPhysics", Keyboard.KEY_NONE, Category.RENDER, "");
+	}
+}

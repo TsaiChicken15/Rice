@@ -34,8 +34,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import rice.Client;
-import rice.modules.utility.SpeedMine;
 
 public class Block
 {
@@ -565,17 +563,6 @@ public class Block
     public float getPlayerRelativeBlockHardness(EntityPlayer playerIn, World worldIn, BlockPos pos)
     {
         float var4 = this.getBlockHardness(worldIn, pos);
-        if (Client.isEnabled("SpeedMine") != null) 
-        {
-            if (SpeedMine.waterValue.get() && playerIn.isInsideOfMaterial(Material.water) &&
-                    !EnchantmentHelper.getAquaAffinityModifier(playerIn)) {
-            	var4 /= 5.0F;
-            }
-
-            if (SpeedMine.airValue.get() && !playerIn.onGround) {
-            	var4 /= 5.0F;
-            }
-        } 
         return var4 < 0.0F ? 0.0F : (!playerIn.canHarvestBlock(this) ? playerIn.func_180471_a(this) / var4 / 100.0F : playerIn.func_180471_a(this) / var4 / 30.0F);
     }
 

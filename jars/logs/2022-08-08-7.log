@@ -1,0 +1,19 @@
+[16:36:40] [Client thread/INFO]: Setting user: Player428
+[16:36:40] [Client thread/INFO]: (Session ID is token:0:Player428)
+[16:36:42] [Client thread/INFO]: LWJGL Version: 2.9.1
+[16:36:43] [Client thread/INFO]: Reloading ResourceManager: Default
+[16:36:43] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[16:36:43] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[16:36:43] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[16:36:43] [Thread-7/INFO]: OpenAL initialized.
+[16:36:44] [Sound Library Loader/INFO]: Sound engine started
+[16:36:45] [Client thread/INFO]: Created: 512x512 textures-atlas
+[16:37:16] [Server thread/INFO]: Starting integrated minecraft server version 1.8
+[16:37:16] [Server thread/INFO]: Generating keypair
+[16:37:17] [Server thread/INFO]: Preparing start region for level 0
+[16:37:18] [Server thread/INFO]: Preparing spawn area: 90%
+[16:37:18] [Server thread/INFO]: Changing view distance to 8, from 10
+[16:37:18] [Server thread/INFO]: Player428[local:E:8d1b6555] logged in with entity id 119 at (460.00931338230896, 68.0, -135.4028066901761)
+[16:37:18] [Server thread/INFO]: Player428 joined the game
+[16:56:37] [Server thread/INFO]: Player428 has just earned the achievement [Taking Inventory]
+[16:56:37] [Client thread/INFO]: [CHAT] Player428 has just earned the achievement [Taking Inventory]

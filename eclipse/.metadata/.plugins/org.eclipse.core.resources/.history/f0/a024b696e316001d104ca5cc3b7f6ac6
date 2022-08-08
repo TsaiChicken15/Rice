@@ -1,0 +1,15 @@
+package rice.command;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Command {
+
+	public String name, description, syntax;
+	public List<String> aliases = new ArrayList<String>();
+	public Command(String name, String description, String syntax) {
+		this.name = name;
+		this.description = description;
+		this.syntax = syntax;
+	}
+}

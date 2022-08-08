@@ -84,8 +84,10 @@ import optifine.ReflectorForge;
 import optifine.TextureUtils;
 import rice.Client;
 import rice.events.listeners.EventGetReach;
+import rice.events.listeners.EventHurtCam;
 import rice.events.listeners.EventRender3D;
 import rice.modules.combat.Reach;
+import rice.modules.render.NoRender;
 import shadersmod.client.Shaders;
 import shadersmod.client.ShadersRender;
 
@@ -672,6 +674,12 @@ public class EntityRenderer implements IResourceManagerReloadListener
     {
         if (this.mc.func_175606_aa() instanceof EntityLivingBase)
         {
+        	EventHurtCam event = new EventHurtCam();
+            Client.onEvent(event);
+            if (event.isCancelled()) {
+                return; 
+            }
+        	
             EntityLivingBase var2 = (EntityLivingBase)this.mc.func_175606_aa();
             float var3 = (float)var2.hurtTime - p_78482_1_;
             float var4;
@@ -775,26 +783,27 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 double event = (double)(MathHelper.cos(yaw / 180.0F * (float)Math.PI) * MathHelper.cos(pitch / 180.0F * (float)Math.PI)) * var28;
                 double var18 = (double)(-MathHelper.sin(pitch / 180.0F * (float)Math.PI)) * var28;
 
-                for (int var20 = 0; var20 < 8; ++var20)
-                {
-                    float var21 = (float)((var20 & 1) * 2 - 1);
-                    float var22 = (float)((var20 >> 1 & 1) * 2 - 1);
-                    float var23 = (float)((var20 >> 2 & 1) * 2 - 1);
-                    var21 *= 0.1F;
-                    var22 *= 0.1F;
-                    var23 *= 0.1F;
-                    MovingObjectPosition var24 = this.mc.theWorld.rayTraceBlocks(new Vec3(var4 + (double)var21, var6 + (double)var22, var8 + (double)var23), new Vec3(var4 - roll + (double)var21 + (double)var23, var6 - var18 + (double)var22, var8 - event + (double)var23));
-
-                    if (var24 != null)
-                    {
-                        double var25 = var24.hitVec.distanceTo(new Vec3(var4, var6, var8));
-
-                        if (var25 < var28)
-                        {
-                            var28 = var25;
-                        }
-                    }
-                }
+                if(Client.isEnabled("CameraClip") == null)
+	                for (int var20 = 0; var20 < 8; ++var20)
+	                {
+	                    float var21 = (float)((var20 & 1) * 2 - 1);
+	                    float var22 = (float)((var20 >> 1 & 1) * 2 - 1);
+	                    float var23 = (float)((var20 >> 2 & 1) * 2 - 1);
+	                    var21 *= 0.1F;
+	                    var22 *= 0.1F;
+	                    var23 *= 0.1F;
+	                    MovingObjectPosition var24 = this.mc.theWorld.rayTraceBlocks(new Vec3(var4 + (double)var21, var6 + (double)var22, var8 + (double)var23), new Vec3(var4 - roll + (double)var21 + (double)var23, var6 - var18 + (double)var22, var8 - event + (double)var23));
+	
+	                    if (var24 != null)
+	                    {
+	                        double var25 = var24.hitVec.distanceTo(new Vec3(var4, var6, var8));
+	
+	                        if (var25 < var28)
+	                        {
+	                            var28 = var25;
+	                        }
+	                    }
+	                }
 
                 if (this.mc.gameSettings.thirdPersonView == 2)
                 {
@@ -933,9 +942,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
             float var6 = 5.0F / (var4 * var4 + 5.0F) - var4 * 0.04F;
             var6 *= var6;
-            GlStateManager.rotate(((float)this.rendererUpdateCount + partialTicks) * (float)var5, 0.0F, 1.0F, 1.0F);
-            GlStateManager.scale(1.0F / var6, 1.0F, 1.0F);
-            GlStateManager.rotate(-((float)this.rendererUpdateCount + partialTicks) * (float)var5, 0.0F, 1.0F, 1.0F);
+            if(!NoRender.nauseaValue.get()) {
+	            GlStateManager.rotate(((float)this.rendererUpdateCount + partialTicks) * (float)var5, 0.0F, 1.0F, 1.0F);
+	            GlStateManager.scale(1.0F / var6, 1.0F, 1.0F);
+	            GlStateManager.rotate(-((float)this.rendererUpdateCount + partialTicks) * (float)var5, 0.0F, 1.0F, 1.0F);
+            }
         }
 
         this.orientCamera(partialTicks);
@@ -970,9 +981,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
      * Render player hand
      */
     public void renderHand(float p_78476_1_, int p_78476_2_)
-    {
-    	Client.onEvent(new EventRender3D(p_78476_1_));
-    	
+    {    	
         if (!this.field_175078_W)
         {
             GlStateManager.matrixMode(5889);
@@ -1925,6 +1934,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
         this.mc.mcProfiler.endStartSection("hand");
         boolean handRendered = Reflector.callBoolean(Reflector.ForgeHooksClient_renderFirstPersonHand, new Object[] {this.mc.renderGlobal, Float.valueOf(partialTicks), Integer.valueOf(pass)});
 
+    	Client.onEvent(new EventRender3D(partialTicks));
+        
         if (!handRendered && this.field_175074_C && !Shaders.isShadowPass)
         {
             if (isShaders)
@@ -2362,7 +2373,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         double fogYFactor1 = var2.provider.getVoidFogYFactor();
         double var23 = (var3.lastTickPosY + (var3.posY - var3.lastTickPosY) * (double)partialTicks) * fogYFactor1;
 
-        if (var3 instanceof EntityLivingBase && ((EntityLivingBase)var3).isPotionActive(Potion.blindness))
+        if (var3 instanceof EntityLivingBase && ((EntityLivingBase)var3).isPotionActive(Potion.blindness) && !NoRender.blindValue.get())
         {
             int var24 = ((EntityLivingBase)var3).getActivePotionEffect(Potion.blindness).getDuration();
 
@@ -2477,7 +2488,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         {
             float var6;
 
-            if (var3 instanceof EntityLivingBase && ((EntityLivingBase)var3).isPotionActive(Potion.blindness))
+            if (var3 instanceof EntityLivingBase && ((EntityLivingBase)var3).isPotionActive(Potion.blindness) && !NoRender.blindValue.get())
             {
                 var6 = 5.0F;
                 int var7 = ((EntityLivingBase)var3).getActivePotionEffect(Potion.blindness).getDuration();

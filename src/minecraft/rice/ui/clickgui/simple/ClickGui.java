@@ -343,7 +343,7 @@ public class ClickGui extends GuiScreen
 				{
 					if(mouseButton == 0) 
 					{
-						if(m.m.getName() == "Auto" || m.m.getName() == "Alts" || m.m.getName() == "ClickGui" || m.m.getName() == "ToggleSound") continue;
+						if(m.m.getName() == "Alts" || m.m.getName() == "ClickGui" || m.m.getName() == "ToggleSound") continue;
 						ToggleSound.playButtonPressSound();
 						m.m.toggle();
 					}

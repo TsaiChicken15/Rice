@@ -30,7 +30,7 @@ public class NoRotate extends Module implements MCHook
 	        	S08PacketPlayerPosLook p = (S08PacketPlayerPosLook) packet;
 	            p.field_148936_d = mc.thePlayer.rotationYaw;
 	            p.field_148937_e = mc.thePlayer.rotationPitch;
-				NotificationManager.show(new Notification(NotificationType.INFO, "¡±l" + "Packet edited", 1));
+				NotificationManager.show(new Notification(NotificationType.INFO, "¡±l[NoRotate]", "Packet edited", 1));
 			}
 		}
 	}

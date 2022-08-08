@@ -583,6 +583,9 @@ public abstract class RendererLivingEntity extends Render
      */
     public void passSpecialRender(EntityLivingBase p_77033_1_, double p_77033_2_, double p_77033_4_, double p_77033_6_)
     {
+    	if (Client.isEnabled("NameTags") != null && p_77033_1_ instanceof EntityPlayer) {
+            return;
+        }
         if (!Reflector.RenderLivingEvent_Specials_Pre_Constructor.exists() || !Reflector.postForgeBusEvent(Reflector.RenderLivingEvent_Specials_Pre_Constructor, new Object[] {p_77033_1_, this, Double.valueOf(p_77033_2_), Double.valueOf(p_77033_4_), Double.valueOf(p_77033_6_)}))
         {
             if (this.canRenderName(p_77033_1_))
@@ -677,14 +680,6 @@ public abstract class RendererLivingEntity extends Render
                         return true;
                 }
             }
-            
-            if(Client.isEnabled("NameTags") != null)
-            {
-        		if (NameTags.invisibleValue.get())
-        		{
-        			return (Minecraft.isGuiEnabled() && targetEntity != this.renderManager.livingPlayer);  
-        		}
-            } 
         }
         return Minecraft.isGuiEnabled() && targetEntity != this.renderManager.livingPlayer && !targetEntity.isInvisibleToPlayer(var2) && targetEntity.riddenByEntity == null;
     }
