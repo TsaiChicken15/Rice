@@ -90,6 +90,23 @@ public class Module implements MCHook
     	if(this.name != "ClickGui")
     		ToggleSound.playButtonPressSound();
     }
+    public void silentToggle() 
+    {
+        this.toggled = !this.toggled;
+        silentHandleToggled();
+    }
+    public void silentHandleToggled() 
+    {
+    	if (this.toggled) {
+            onEnable();
+            if(this.name == "ClickGui") return;
+            if(Client.isEnabled("AntiBlatant") != null && this.getCategory() == Category.BLATANT) return;
+        } else {
+            onDisable();
+            if(this.name == "ClickGui") return;
+            if(Client.isEnabled("AntiBlatant") != null && this.getCategory() == Category.BLATANT) return;
+        }
+    }
     public void onEnable() {}
     public void onDisable() {}
     public void setup() {}
@@ -109,4 +126,15 @@ public class Module implements MCHook
         	this.name = name;
         }
     }	
+    public static int getIndex(Category c) {
+    	int index = 0;
+    	for(Category cg: Category.values()) {
+    		if(cg.name == c.name) {
+    			return index;
+    		}else {
+    			index++;
+    		}
+    	}
+    	return -1;
+    }
 }

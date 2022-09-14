@@ -1,5 +1,0 @@
-package client.main.events.listeners;
-
-import client.main.events.Event;
-
-public class EventHurtCam extends Event<EventHurtCam> {}

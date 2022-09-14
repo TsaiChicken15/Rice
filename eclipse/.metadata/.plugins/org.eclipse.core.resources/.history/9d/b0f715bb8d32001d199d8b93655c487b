@@ -1,0 +1,20 @@
+package rice.jframes;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import net.minecraft.util.ResourceLocation;
+
+public class main {
+	
+	public static void setup() {
+		
+		JLabel jLabel = new JLabel();
+		jLabel.setText("Hi");
+		
+		JGui jGui = new JGui();
+
+	}
+
+}

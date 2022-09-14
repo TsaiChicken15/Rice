@@ -33,6 +33,10 @@ public class Scaffold extends Module implements MCHook
 	private int oldSlot = -1;
 	public void onEnable() 
 	{
+		if(!Client.nullCheck()) {
+			Client.getModuleByName("Scaffold").toggled = false;
+			return;
+		}
 		if(autoSwitchValue.get())
 		{
 			oldSlot = mc.thePlayer.inventory.currentItem;

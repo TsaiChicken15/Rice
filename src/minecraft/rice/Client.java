@@ -11,6 +11,8 @@ import rice.command.CommandManager;
 import rice.events.Event;
 import rice.events.listeners.EventChat;
 import rice.events.listeners.EventKey;
+import rice.jui.JArrayList;
+import rice.jui.JMain;
 import rice.modules.Module;
 import rice.modules.Module.Category;
 import rice.modules.blatant.Hitbox;
@@ -99,10 +101,23 @@ public class Client implements MCHook
 		modules.add(new WTap());
 		
 		fileManager.init();
+		
+		//new JMain();
 	}
 	public static void shutdown() {
 		fileManager.SETTING_DIR = new File(fileManager.FOLDER_DIR, "rice.txt");
 		fileManager.saveSettings();
+	}
+	public static Module getModuleByName(String s)
+	{
+		for(Module m: getModule()) 
+		{
+            if (s == m.getName()) 
+            {
+            	return m;
+            }
+        }
+		return null;
 	}
 	public static Module isEnabled(String s)
 	{

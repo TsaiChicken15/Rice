@@ -1,5 +1,7 @@
 package rice.modules.combat;
 
+import javax.swing.JSlider;
+
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.entity.Entity;
@@ -7,6 +9,7 @@ import rice.Client;
 import rice.events.Event;
 import rice.events.listeners.EventGetReach;
 import rice.events.listeners.EventUpdate;
+import rice.jui.JClickGUI;
 import rice.modules.Module;
 import rice.settings.BooleanSetting;
 import rice.settings.NumberSetting;
@@ -35,6 +38,12 @@ public class Reach extends Module implements MCHook
 			if(attackRangeValue.get() > buildRangeValue.get()) 
 			{
 				double temp = attackRangeValue.get();
+				for(JSlider js: JClickGUI.sliders) {
+					if(js.getName().contains(this.name) && js.getName().contains(attackRangeValue.name))
+						js.setValue((int) (buildRangeValue.get() * 100));
+					if(js.getName().contains(this.name) && js.getName().contains(buildRangeValue.name))
+						js.setValue((int) (attackRangeValue.get() * 100));
+				}
 				attackRangeValue.setValue(buildRangeValue.get());
 				buildRangeValue.setValue(temp);
 			}

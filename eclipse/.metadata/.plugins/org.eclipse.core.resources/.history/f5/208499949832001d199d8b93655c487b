@@ -1,0 +1,81 @@
+package rice.jui;
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import rice.Client;
+import rice.modules.Module;
+import rice.modules.Module.Category;
+import rice.modules.other.ToggleSound;
+
+public class JArrayList extends JFrame implements ActionListener{
+
+	JLabel label;
+	ArrayList<JLabel> labels = new ArrayList<JLabel>();
+	
+	JArrayList() {
+		int index=0;
+		for(Module m: Client.getModule()) {
+			label = new JButton();
+			label.setBounds(105, 5 + index * 30, 100, 30);
+			label.setFocusable(true);
+			label.setText(m.getName());
+			label.addActionListener(e -> toggleModule(m));
+			label.setForeground(m.isToggled() ? Color.GREEN : Color.RED);
+			label.setBackground(Color.LIGHT_GRAY);
+			label.setBorder(BorderFactory.createEtchedBorder());
+			labels.add(label);
+			index++;
+		}
+		
+		this.setTitle("Minecraft");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setLayout(null);
+		this.setSize(560, 315);
+		this.setVisible(true);
+		
+		for(JButton jb: categorys) this.add(jb);
+		for(JButton jb: buttons) this.add(jb);
+		
+	}
+
+	void changeCategory(Category c) {
+		currentCategory = c;
+		ToggleSound.playButtonPressSound();
+		for(JButton jb: buttons) {
+			jb.setVisible(false);
+		}
+		for(JButton jb: buttons) {
+			for(Module m: Client.getModuleByCategory(c)) {
+				if(jb.getText() == m.getName())
+					jb.setVisible(true);
+			}
+		}
+	}
+	
+	void toggleModule(Module m) {
+		Client.getModuleByName(m.getName()).silentToggle();
+		for(JButton jb: buttons) {
+			if(Client.getModuleByName(jb.getText()).isToggled())
+				jb.setForeground(Color.GREEN);
+			else
+				jb.setForeground(Color.RED);
+		}
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	}
+	
+}

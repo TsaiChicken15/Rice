@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiScreen;
 import rice.Client;
+import rice.jui.JClickGUI;
 import rice.modules.Module;
 import rice.modules.Module.Category;
 import rice.modules.other.ToggleSound;
@@ -34,12 +35,14 @@ public class ClickGui extends GuiScreen
 	public ArrayList<ModuleButton> utility = new ArrayList<ModuleButton>();
 	public ArrayList<ModuleButton> other = new ArrayList<ModuleButton>();
 	public ArrayList<Button> setting = new ArrayList<Button>();
-	public int x = 100,y = 100, lastFocus = -1;
-	public int lastFocused[] = {-1,-1,-1,-1,-1};
+	public static int x = 100,y = 100, lastFocus = -1;
+	public static int lastFocused[] = {-1,-1,-1,-1,-1};
 	public static int times = 20;
 	public void initGui() 
 	{
 		super.initGui();
+		//lastFocus = Module.getIndex(JClickGUI.currentCategory);
+		lastFocused = JClickGUI.lastFocused;
 		listClear();
 		Button.time = 0;
 		times = 50;
@@ -195,61 +198,36 @@ public class ClickGui extends GuiScreen
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		if(Button.time <= times)
-		{
 			Button.time++;
-		}
 		for(Panel p: panels) 
-		{
 			p.draw(mouseX,mouseY);
-		}
 		for(NormalButton n: normal) 
-		{
 			n.draw(mouseX,mouseY);
-		}
 		for(CategoryButton c: categorys) 
 		{
 			c.draw(mouseX,mouseY);
 			if(c.focused) 
 			{
-				if(c.c == Category.COMBAT) 
-				{
+				if(c.c == Category.COMBAT){
 					lastFocus = 0;
 					for(ModuleButton m: combat) 
-					{
 						drawModAndSets(m, mouseX, mouseY);
-					}
-				}
-				else if(c.c == Category.BLATANT) 
-				{
+				}else if(c.c == Category.BLATANT) {
 					lastFocus = 1;
 					for(ModuleButton m: blatant) 
-					{
 						drawModAndSets(m, mouseX, mouseY);
-					}
-				}
-				else if(c.c == Category.RENDER) 
-				{
+				}else if(c.c == Category.RENDER) {
 					lastFocus = 2;
 					for(ModuleButton m: render) 
-					{
 						drawModAndSets(m, mouseX, mouseY);
-					}
-				}
-				else if(c.c == Category.UTILITY) 
-				{
+				}else if(c.c == Category.UTILITY) {
 					lastFocus = 3;
 					for(ModuleButton m: utility) 
-					{
 						drawModAndSets(m, mouseX, mouseY);
-					}
-				}
-				else if(c.c == Category.OTHER)
-				{
+				}else if(c.c == Category.OTHER){
 					lastFocus = 4;
 					for(ModuleButton m: other)
-					{
 						drawModAndSets(m, mouseX, mouseY);
-					}
 				}
 			}
 		}
@@ -269,45 +247,21 @@ public class ClickGui extends GuiScreen
 				for(Setting s: m.m.settings) 
 				{
 					if(b instanceof BooleanButton) 
-					{
 						if(s instanceof BooleanSetting) 
-						{
 							if(((BooleanButton)b).s == s) 
-							{
 								b.draw(mouseX, mouseY);
-							}
-						}
-					}
 					if(b instanceof ModeButton) 
-					{
 						if(s instanceof ModeSetting) 
-						{
 							if(((ModeButton)b).m == s) 
-							{
 								b.draw(mouseX, mouseY);
-							}
-						}
-					}
 					if(b instanceof NumberButton) 
-					{
 						if(s instanceof NumberSetting) 
-						{
 							if(((NumberButton)b).m == s)
-							{
 								b.draw(mouseX, mouseY);
-							}
-						}
-					}
 					if(b instanceof rice.ui.clickgui.simple.button.Description) 
-					{
 						if(s instanceof rice.settings.Description) 
-						{
 							if(((rice.ui.clickgui.simple.button.Description)b).s == s)
-							{
 								b.draw(mouseX, mouseY);
-							}
-						}
-					}
 				}
 			}
 		}
@@ -406,41 +360,27 @@ public class ClickGui extends GuiScreen
 			if(m instanceof NumberButton)
 			{
 				if(((NumberButton)m).hovered && mouseButton == 0)
-				{
-					if(isCtrlKeyDown()) 
-					{
+					if(isCtrlKeyDown()) {
 						ToggleSound.playButtonPressSound();
 						((NumberButton)m).m.setValue(((NumberButton)m).m.value + ((NumberButton)m).m.getIncrement() * 100);
-					}
-					else if(isShiftKeyDown()) 
-					{
+					}else if(isShiftKeyDown()) {
 						ToggleSound.playButtonPressSound();
 						((NumberButton)m).m.setValue(((NumberButton)m).m.value + ((NumberButton)m).m.getIncrement() * 10);
-					}
-					else 
-					{
+					}else {
 						ToggleSound.playButtonPressSound();
 						((NumberButton)m).m.setValue(((NumberButton)m).m.value + ((NumberButton)m).m.getIncrement());
 					}
-				}
 				if(((NumberButton)m).hovered && mouseButton == 1) 
-				{
-					if(isCtrlKeyDown()) 
-					{
+					if(isCtrlKeyDown()) {
 						ToggleSound.playButtonPressSound();
 						((NumberButton)m).m.setValue(((NumberButton)m).m.value - ((NumberButton)m).m.getIncrement() * 100);
-					}
-					else if(isShiftKeyDown())
-					{
+					}else if(isShiftKeyDown()){
 						ToggleSound.playButtonPressSound();
 						((NumberButton)m).m.setValue(((NumberButton)m).m.value - ((NumberButton)m).m.getIncrement() * 10);
-					}
-					else
-					{
+					}else{
 						ToggleSound.playButtonPressSound();
 						((NumberButton)m).m.setValue(((NumberButton)m).m.value - ((NumberButton)m).m.getIncrement());
 					}
-				}
 			}
 		}
     }

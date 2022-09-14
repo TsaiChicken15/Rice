@@ -1,0 +1,68 @@
+package rice.jui;
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Comparator;
+
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import rice.Client;
+import rice.modules.Module;
+import rice.modules.Module.Category;
+import rice.modules.other.ToggleSound;
+import rice.utils.MCHook;
+
+public class JArrayList extends JFrame implements ActionListener, MCHook{
+
+	static JLabel label;
+	static ArrayList<JLabel> labels = new ArrayList<JLabel>();
+	
+	JArrayList() {
+		int index=0;
+		ArrayList<Module> modsList = new ArrayList<Module>();
+		for(Module m: Client.getModule()) modsList.add(m);
+		modsList.sort(Comparator.comparingInt(m -> mc.fontRendererObj.getStringWidth(String.valueOf(((Module)m).name + (((Module)m).additionalInfo != "" ? " " + ((Module)m).additionalInfo : "")))).reversed());
+		for(Module m: modsList) {
+			label = new JLabel();
+			if(!m.isToggled()) label.setVisible(false);
+			if(m.isToggled()) {
+				label.setHorizontalAlignment(JLabel.LEFT);
+				index++;
+			}
+			label.setText(String.valueOf(((Module)m).name + (((Module)m).additionalInfo != "" ? " " + ((Module)m).additionalInfo : "")));
+			labels.add(label);
+		}
+		
+		this.setTitle("Minecraft");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setLayout(null);
+		this.setBackground(Color.LIGHT_GRAY);
+		this.setSize(160, 320);
+		this.setVisible(true);
+		
+		for(JLabel jl: labels) this.add(jl);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	}
+	
+	static void updateArrayList() {
+		int index=0;
+		for(JLabel jl: labels) {
+			if(!Client.getModuleByName(jl.getText()).isToggled()) label.setVisible(false);
+			if(Client.getModuleByName(jl.getText()).isToggled()) label.setVisible(true);
+			index++;
+		}
+	}
+}

@@ -1,0 +1,52 @@
+package rice.jui;
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import rice.Client;
+import rice.modules.Module;
+import rice.modules.Module.Category;
+import rice.modules.other.ToggleSound;
+
+public class JArrayList extends JFrame implements ActionListener{
+
+	JLabel label;
+	ArrayList<JLabel> labels = new ArrayList<JLabel>();
+	
+	JArrayList() {
+		int index=0;
+		for(Module m: Client.getModule()) {
+			if(!m.isToggled()) continue;
+			label = new JLabel();
+			label.setBounds(5, 5 + index * 30, 100, 20);
+			label.setText(m.getName());
+			labels.add(label);
+			index++;
+		}
+		
+		this.setTitle("Minecraft");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setLayout(null);
+		this.setBackground(Color.LIGHT_GRAY);
+		this.setSize(560, 315);
+		this.setVisible(true);
+		
+		for(JLabel jl: labels) this.add(jl);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	}
+	
+}

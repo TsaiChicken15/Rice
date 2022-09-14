@@ -3,6 +3,8 @@ package rice.modules.combat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JSlider;
+
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import rice.events.Event;
 import rice.events.listeners.EventUpdate;
+import rice.jui.JClickGUI;
 import rice.modules.Module;
 import rice.settings.BooleanSetting;
 import rice.settings.ModeSetting;
@@ -47,6 +50,12 @@ public class ThrowPot extends Module implements MCHook
 			if(minDelayValue.get() > maxDelayValue.get()) 
 			{
 				double temp = minDelayValue.get();
+				for(JSlider js: JClickGUI.sliders) {
+					if(js.getName().contains(this.name) && js.getName().contains(minDelayValue.name))
+						js.setValue((int) (maxDelayValue.get() * 100));
+					if(js.getName().contains(this.name) && js.getName().contains(maxDelayValue.name))
+						js.setValue((int) (minDelayValue.get() * 100));
+				}
 				minDelayValue.setValue(maxDelayValue.get());
 				maxDelayValue.setValue(temp);
 			}

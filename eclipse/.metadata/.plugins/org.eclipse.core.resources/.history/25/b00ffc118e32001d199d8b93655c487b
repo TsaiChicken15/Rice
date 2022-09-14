@@ -1,0 +1,25 @@
+package rice.jframes;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import net.minecraft.util.ResourceLocation;
+
+public class main {
+	
+	public static void setup() {
+		
+		JLabel jLabel = new JLabel();
+		jLabel.setText("Hi");
+		
+		JFrame jFrame = new JFrame();
+		jFrame.setTitle("Minecraft");
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jFrame.setResizable(false);
+		jFrame.setSize(400, 225);
+		jFrame.setVisible(true);
+		jFrame.add(jLabel);
+	}
+
+}

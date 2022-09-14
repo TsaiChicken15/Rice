@@ -7,15 +7,21 @@ public class ModeSetting extends Setting
 {
 	public int index;
 	public List<String> modes;
+	public String[] strmodes;
 	public ModeSetting(String name, String defaultMode, String... modes) 
 	{
 		this.name = name;
 		this.modes = Arrays.asList(modes);
+		this.strmodes = modes;
 		index = this.modes.indexOf(defaultMode);
 	}
 	public String get() 
 	{
 		return modes.get(this.index);
+	}
+	public String[] getModesStrings()
+	{
+		return strmodes;
 	}
 	public List<String> getModes() 
 	{

@@ -1,0 +1,31 @@
+package rice.jframes;
+
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import net.minecraft.util.ResourceLocation;
+
+public class main {
+	
+	public static void setup() {
+		
+		JLabel jLabel = new JLabel();
+		jLabel.setText("Hi");
+		jLabel.setFont(new Font("MV Boli", Font.PLAIN, 20));
+		jLabel.setBackground(new Color(26, 28, 120));
+		jLabel.setOpaque(true);
+		
+		JFrame jFrame = new JFrame();
+		jFrame.setTitle("Minecraft");
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jFrame.setResizable(false);
+		jFrame.setSize(400, 225);
+		jFrame.setVisible(true);
+		jFrame.add(jLabel);
+	}
+
+}

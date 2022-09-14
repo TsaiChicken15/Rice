@@ -18,7 +18,7 @@
 		<item key="create_package_info_java" value="false"/>
 	</section>
 	<section name="completion_proposal_size">
-		<item key="size.x" value="413"/>
+		<item key="size.x" value="411"/>
 		<item key="size.y" value="221"/>
 	</section>
 	<section name="quick_assist_proposal_size">
@@ -60,6 +60,7 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="D:\Latest Clients\Rice Client\Rice b5.jar"/>
 			<item value="D:\Latest Clients\Rice Client\Rice b4.1.jar"/>
 			<item value="D:\Latest Clients\Rice\eclipse\Rice b4.jar"/>
 			<item value="D:\Latest Clients\Rice Client\Rice b3.jar"/>

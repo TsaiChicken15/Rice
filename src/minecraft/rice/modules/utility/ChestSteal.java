@@ -3,6 +3,8 @@ package rice.modules.utility;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JSlider;
+
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.block.BlockChest;
@@ -19,6 +21,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import rice.events.Event;
 import rice.events.listeners.EventUpdate;
+import rice.jui.JClickGUI;
 import rice.modules.Module;
 import rice.modules.Module.Category;
 import rice.settings.BooleanSetting;
@@ -50,8 +53,26 @@ public class ChestSteal extends Module {
 			if(minDelayValue.get() > maxDelayValue.get()) 
 			{
 				double temp = minDelayValue.get();
+				for(JSlider js: JClickGUI.sliders) {
+					if(js.getName().contains(this.name) && js.getName().contains(minDelayValue.name))
+						js.setValue((int) (maxDelayValue.get() * 100));
+					if(js.getName().contains(this.name) && js.getName().contains(maxDelayValue.name))
+						js.setValue((int) (minDelayValue.get() * 100));
+				}
 				minDelayValue.setValue(maxDelayValue.get());
 				maxDelayValue.setValue(temp);
+			}
+			if(minAutoCloseDelayValue.get() > maxAutoCloseDelayValue.get()) 
+			{
+				double temp = minAutoCloseDelayValue.get();
+				for(JSlider js: JClickGUI.sliders) {
+					if(js.getName().contains(this.name) && js.getName().contains(minAutoCloseDelayValue.name))
+						js.setValue((int) (maxAutoCloseDelayValue.get() * 100));
+					if(js.getName().contains(this.name) && js.getName().contains(maxAutoCloseDelayValue.name))
+						js.setValue((int) (minAutoCloseDelayValue.get() * 100));
+				}
+				minAutoCloseDelayValue.setValue(maxAutoCloseDelayValue.get());
+				maxAutoCloseDelayValue.setValue(temp);
 			}
 		}
 	}

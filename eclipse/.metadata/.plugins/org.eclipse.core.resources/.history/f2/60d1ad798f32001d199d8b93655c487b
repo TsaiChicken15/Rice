@@ -1,0 +1,34 @@
+package rice.jframes;
+
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
+
+import net.minecraft.util.ResourceLocation;
+
+public class main {
+	
+	public static void setup() {
+		
+		Border border = BorderFactory.createLineBorder(Color.GREEN, 3);
+		
+		JLabel jLabel = new JLabel();
+		jLabel.setText("Hi");
+		jLabel.setFont(new Font("MV Boli", Font.PLAIN, 20));
+		jLabel.setBorder(border);
+		
+		JFrame jFrame = new JFrame();
+		jFrame.setTitle("Minecraft");
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jFrame.setResizable(false);
+		jFrame.setSize(400, 225);
+		jFrame.setVisible(true);
+		jFrame.add(jLabel);
+	}
+
+}

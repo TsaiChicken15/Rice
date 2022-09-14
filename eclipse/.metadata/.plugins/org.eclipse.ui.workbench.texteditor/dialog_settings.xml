@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="send"/>
+		<item key="selection" value="timer"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="timer"/>
+			<item value="JTextField"/>
+			<item value="maxDelayValue"/>
+			<item value="minDelayValue"/>
+			<item value="jFrame"/>
+			<item value="locationMojangPng"/>
 			<item value="send"/>
 			<item value="sendmessage"/>
 			<item value="rice.ui.clickgui"/>
@@ -17,14 +23,12 @@
 			<item value="Code"/>
 			<item value="code"/>
 			<item value="renderHand"/>
-			<item value="renderWorldPass"/>
-			<item value="p."/>
-			<item value="var12.getStringWidth(&quot;§l&quot;+ p_147906_2_)"/>
-			<item value="var12.getStringWidth(&quot;§l&quot;+ p_147906_2_) / 2"/>
-			<item value="var12.getStringWidth(&quot;§l &quot;+ p_147906_2_) / 2"/>
-			<item value="getPlayerRelativeBlockHardness"/>
 		</list>
 		<list key="replacehistory">
+			<item value="JTextArea"/>
+			<item value="maxAutoCloseDelayValue"/>
+			<item value="minAutoCloseDelayValue"/>
+			<item value="this"/>
 			<item value="rice.ui.clickgui.simple"/>
 			<item value="new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);"/>
 			<item value=""/>
@@ -36,10 +40,6 @@
 			<item value="new BooleanSetting"/>
 			<item value="new NumberSetting"/>
 			<item value="public static"/>
-			<item value="func_174811_aO()"/>
-			<item value="2D"/>
-			<item value="145"/>
-			<item value="((EventYawHead)e).yaw"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
