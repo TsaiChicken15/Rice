@@ -82,15 +82,15 @@ public class FileManager {
 							}
 						}
 					}
-                }catch (Exception var101) {
-                    logger.warn("Skipping bad option: " + var2);
-                    var101.printStackTrace();
-                }
-            }
-            KeyBinding.resetKeyBindingArrayAndHash();
-            var9.close();
-        }catch (Exception var111) {
-            logger.error("Failed to load Render options", var111);
-        }
+				}catch (Exception var101) {
+				    logger.warn("Skipping bad option: " + var2);
+				    var101.printStackTrace();
+				}
+			}
+			KeyBinding.resetKeyBindingArrayAndHash();
+			var9.close();
+		}catch (Exception var111) {
+		    logger.error("Failed to load Render options", var111);
+		}
 	}
 }
